@@ -4,7 +4,7 @@ from django.db.models.deletion import DO_NOTHING
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-# 유저
+
 class profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     phone_no = models.CharField(db_column='phone_no', null=True, max_length=100, default='')

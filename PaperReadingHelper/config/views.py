@@ -50,16 +50,10 @@ class RegisterView(View):
 
     def post(self, request: HttpRequest, *args, **kwargs):
         context = {}
-        id = request.POST['card-id']
-        password = request.POST['card-password']
-        password_confirm = request.POST['card-confirm-password']
-        name = request.POST['card-name']
-        email = request.POST['card-email']
-
-        if password != password_confirm:
-            context['success'] = False
-            context['message'] = '비밀번호가 일치하지 않습니다.'
-            return JsonResponse(context, content_type='application/json')
+        id = request.POST['login-id']
+        password = request.POST['login-password']
+        password_confirm = request.POST['login-confirm-password']
+        email = request.POST['login-email']
 
         try:
             user = User.objects.get(username=id)
@@ -73,10 +67,7 @@ class RegisterView(View):
                 email,
                 password
             )
-            userid = user.id
-            rsProfile = profile.objects.get(user_id=userid)
-            rsProfile.name = name
-            rsProfile.save()
+
 
         context['success'] = True
         context['message'] = '등록 되었습니다.'
