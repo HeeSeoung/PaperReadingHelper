@@ -6,7 +6,7 @@ from django.views.generic import View
 from django.contrib.auth.models import User
 
 
-class HomeView(View):
+class HomeView(LoginRequiredMixin, View):
     def get(self, request: HttpRequest, *args, **kwargs):
         context = {}
         return render(request, 'index.html', context)
@@ -21,8 +21,8 @@ class LoginView(View):
 
     def post(self, request: HttpRequest, *args, **kwargs):
         context = {}
-        id = request.POST['card-id']
-        password = request.POST['card-password']
+        id = request.POST['login-id']
+        password = request.POST['login-password']
         user = authenticate(username=id, password=password)
 
         if user is not None:
@@ -52,24 +52,22 @@ class RegisterView(View):
         context = {}
         id = request.POST['login-id']
         password = request.POST['login-password']
-        password_confirm = request.POST['login-confirm-password']
         email = request.POST['login-email']
 
         try:
             user = User.objects.get(username=id)
             context['success'] = False
-            context['message'] = '아이디가 이미 존재합니다.'
+            context['message'] = '해당 아이디가 이미 존재합니다.'
             return JsonResponse(context, content_type='application/json')
 
         except:
             user = User.objects.create_user(
-                id,
-                email,
-                password
+                username= id,
+                email = email,
+                password = password
             )
 
-
         context['success'] = True
-        context['message'] = '등록 되었습니다.'
+        context['message'] = '회원가입이 완료되었습니다.'
         return JsonResponse(context, content_type='application/json')
 

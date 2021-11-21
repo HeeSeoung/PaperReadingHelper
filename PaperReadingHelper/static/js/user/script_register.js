@@ -1,9 +1,9 @@
 'use strict'
-
-const btnCreate = document.getElementById('btn-create')
+console.log('heelo');
+const btnCreate = document.getElementById('btn-create');
 
 btnCreate.addEventListener('click', async() => {
-
+    console.log('heelo');
     let id = document.getElementById('login-id').value;
     let password = document.getElementById('login-password').value;
     let password_confirm = document.getElementById('login-confirm-password').value;
@@ -50,30 +50,26 @@ btnCreate.addEventListener('click', async() => {
         }
     }
 
-    const formData = new FormData();
-    formData.append('login-id', document.getElementById('login-id').value);
-    formData.append('login-password', document.getElementById('login-password').value);
-    formData.append('login-confirm-password', document.getElementById('login-confirm-password').value);
-    formData.append('login-email', document.getElementById('login-create').value);
+    const data = new FormData(document.getElementById('RegisterForm'));
 
-
-    const response = await fetch('', {
+    const response = await fetch('/', {
         method: 'POST',
         headers: {'X-CSRFToken': getCookie('csrftoken')},
-        body: formData,
+        body: data,
     })
     .catch((error) => {
         alert(error);
     })
     const result = await response.json()
     if (result.success){
+        alert()
         location.href='/login';
     }
 
 })
 
 
-function CheckID(str){
+function checkID(str){
     if(str === '')
         return;
     let reg_id = /^[a-z]+[a-z0-9]{5,19}$/g;

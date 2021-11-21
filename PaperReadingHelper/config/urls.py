@@ -8,7 +8,7 @@ from config.views import LoginView, RegisterView
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('login/', LoginView.as_view(), name='login'),
+    path('login', LoginView.as_view(), name='login'),
     path('register/', RegisterView.as_view(), name='register'),
 
     path('', HomeView.as_view()),

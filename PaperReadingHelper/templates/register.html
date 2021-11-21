@@ -37,29 +37,29 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form action='/register' method='post' id="RegisterForm">
+                            <form id="RegisterForm">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="login-id"
-                                        placeholder="ID">
+                                        placeholder="ID" autocomplete="on" onchange="checkID(this.value);">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="login-password" placeholder="Password">
+                                            id="login-password" placeholder="Password" autocomplete="on" onchange="checkPassword(this.value);">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="login-confirm-password" placeholder="Repeat Password">
-                                    </div
+                                            id="login-confirm-password" placeholder="Repeat Password" onchange="inspectPassword(this.value);">
+                                    </div>
                                 </div>
-                                <div class="form-group">x
+                                <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="login-email"
-                                        placeholder="Email">
+                                        placeholder="Email" autocomplete="on" onchange="checkEmail(this.value);">
                                 </div>
                                 <button class="btn btn-primary btn-user btn-block" id="btn-create">
                                     Register Account
                                 </button>
-                                <hr
+                                <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
                                 </a>
@@ -83,16 +83,17 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}" defer></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}" defer></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}" defer></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+    <script src="{% static 'js/sb-admin-2.min.js' %}" defer></script>
 
-    <script src="{% static 'js/user/script_register.js' %}"
+    <script src="{% static 'js/user/script_register.js' %}" defer></script>
+
 </body>
 
 </html>

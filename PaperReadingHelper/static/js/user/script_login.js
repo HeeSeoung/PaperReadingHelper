@@ -4,21 +4,21 @@ const btnLogin = document.getElementById('login-btn');
 
 btnLogin.addEventListener('click', async() => {
 
-    const id = document.getElementById('card-id').value;
-    const password = document.getElementById('card-password').value;
+    const id = document.getElementById('login-id').value;
+    const password = document.getElementById('login-password').value;
 
     if(id == ''){
-        document.getElementById('card-id').focus();
+        document.getElementById('login-id').focus();
         return false;
     }
     if(password == ''){
-        document.getElementById('card-password').focus();
+        document.getElementById('login-password').focus();
         return false;
     }
 
     const formData = new FormData();
-    formData.append('card-id', document.getElementById('card-id').value);
-    formData.append('card-password', document.getElementById('card-password').value);
+    formData.append('login-id', document.getElementById('login-id').value);
+    formData.append('login-password', document.getElementById('login-password').value);
 
     const response = await fetch('', {
         method: 'POST',
@@ -34,6 +34,7 @@ btnLogin.addEventListener('click', async() => {
     }
 
 })
+
 
 function enterkey() {
     if (window.event.keyCode == 13) {
