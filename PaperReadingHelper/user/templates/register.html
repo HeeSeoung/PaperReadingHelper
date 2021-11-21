@@ -41,6 +41,7 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="login-id"
                                         placeholder="ID" autocomplete="on" onchange="checkID(this.value);">
+                                    <span id="idError" class="text-danger"></span>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -50,13 +51,15 @@
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
                                             id="login-confirm-password" placeholder="Repeat Password" onchange="inspectPassword(this.value);">
+                                        <span id="passwordError" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="login-email"
                                         placeholder="Email" autocomplete="on" onchange="checkEmail(this.value);">
-                                </div>
-                                <button class="btn btn-primary btn-user btn-block" id="btn-create">
+                                    <span id="emailError" class="text-danger"></span>
+                                    </div>
+                                <button class="btn btn-primary btn-user btn-block" id="btn-create" value="test">
                                     Register Account
                                 </button>
                                 <hr>

@@ -1,9 +1,8 @@
-'use strict'
-console.log('heelo');
-const btnCreate = document.getElementById('btn-create');
+'use strict';
+const btn_Create = document.getElementById('btn-create');
+console.log(btn_Create.value);
+btn_Create.addEventListener('click', async() => {
 
-btnCreate.addEventListener('click', async() => {
-    console.log('heelo');
     let id = document.getElementById('login-id').value;
     let password = document.getElementById('login-password').value;
     let password_confirm = document.getElementById('login-confirm-password').value;
@@ -14,7 +13,7 @@ btnCreate.addEventListener('click', async() => {
         return false;
     }
     else{
-        if(!CheckID(id)){
+        if(!checkID(id)){
             document.getElementById('login-id').focus();
             return false;
         }
@@ -24,7 +23,7 @@ btnCreate.addEventListener('click', async() => {
         return false;
     }
     else{
-        if(!CheckPassword(password)){
+        if(!checkPassword(password)){
             document.getElementById('login-password').focus();
             return false;
         }
@@ -44,7 +43,7 @@ btnCreate.addEventListener('click', async() => {
         return false;
     }
     else{
-        if(!CheckEmail(email)){
+        if(!checkEmail(email)){
             document.getElementById('login-email').focus();
             return false;
         }
@@ -52,7 +51,7 @@ btnCreate.addEventListener('click', async() => {
 
     const data = new FormData(document.getElementById('RegisterForm'));
 
-    const response = await fetch('/', {
+    const response = await fetch('', {
         method: 'POST',
         headers: {'X-CSRFToken': getCookie('csrftoken')},
         body: data,
@@ -62,7 +61,7 @@ btnCreate.addEventListener('click', async() => {
     })
     const result = await response.json()
     if (result.success){
-        alert()
+        alert(result.message)
         location.href='/login';
     }
 
@@ -120,8 +119,8 @@ function checkPassword(str){
 
 
 function inspectPassword(){
-    let password = document.getElementById('card-password').value;
-    let password_confirm = document.getElementById('card-confirm-password').value;
+    let password = document.getElementById('login-password').value;
+    let password_confirm = document.getElementById('login-confirm-password').value;
     if(password === '' || password_confirm === '')
         return
     if(password !== password_confirm){
