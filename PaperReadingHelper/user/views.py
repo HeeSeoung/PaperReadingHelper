@@ -1,20 +1,21 @@
 from django.contrib.auth import authenticate, login
 from django.http import HttpRequest, JsonResponse
+from django.http.request import QueryDict
 from django.shortcuts import redirect, render
 from django.views.generic import View
 from django.contrib.auth.models import User
-
+import json
 
 
 class LoginView(View):
-    def get(self, request: HttpRequest, *args, **kwargs):
+    def get(self, request: HttpRequest):
         context = {}
         if request.user.id:
             return redirect('/')
 
         return render(request, 'login.html', context)
 
-    def post(self, request: HttpRequest, *args, **kwargs):
+    def post(self, request: HttpRequest):
         context = {}
         id = request.POST['login-id']
         password = request.POST['login-password']
@@ -36,15 +37,16 @@ class LogoutPageView(View):
         return render(request, 'logout.html', context)
 
 class RegisterView(View):
-    def get(self, request: HttpRequest, *args, **kwargs):
+    def get(self, request: HttpRequest):
         context = {}
         if request.user.id:
             return redirect('/')
 
         return render(request, 'register.html', context)
 
-    def post(self, request: HttpRequest, *args, **kwargs):
+    def post(self, request: HttpRequest):
         context = {}
+        print(request.POST)
         id = request.POST['login-id']
         password = request.POST['login-password']
         email = request.POST['login-email']

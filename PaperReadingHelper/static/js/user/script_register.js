@@ -1,6 +1,7 @@
 'use strict';
 const btn_Create = document.getElementById('btn-create');
-console.log(btn_Create.value);
+
+
 btn_Create.addEventListener('click', async() => {
 
     let id = document.getElementById('login-id').value;
@@ -49,12 +50,26 @@ btn_Create.addEventListener('click', async() => {
         }
     }
 
-    const data = new FormData(document.getElementById('RegisterForm'));
+    const formData = new FormData();
+    formData.append('login-id', document.getElementById('login-id').value);
+    formData.append('login-password', document.getElementById('login-password').value);
+    formData.append('login-email', document.getElementById('login-email').value);
+    
+    const data = {
+        'login-id': document.getElementById('login-id').value,
+        'login-password': document.getElementById('login-password').value,
+        'login-email': document.getElementById('login-email').value,
+    }
+
+    console.log(id);
+    console.log(password);
+    console.log(email);
+    const token = getCookie('csrftoken');
 
     const response = await fetch('', {
         method: 'POST',
-        headers: {'X-CSRFToken': getCookie('csrftoken')},
-        body: data,
+        headers: {"X-CSRFToken": getCookie('csrftoken')},
+        body: formData,
     })
     .catch((error) => {
         alert(error);
@@ -62,7 +77,7 @@ btn_Create.addEventListener('click', async() => {
     const result = await response.json()
     if (result.success){
         alert(result.message)
-        location.href='/login';
+        location.href='/login/';
     }
 
 })
@@ -132,3 +147,20 @@ function inspectPassword(){
         return true;
     }
 }
+
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+    return cookieValue;
+    }
