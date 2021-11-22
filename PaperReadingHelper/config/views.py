@@ -7,7 +7,5 @@ from django.views.generic import View
 class HomeView(LoginRequiredMixin, View):
     def get(self, request: HttpRequest, *args, **kwargs):
         context = {}
-        
-        return render(request, 'index.html', context)
 
-
+        return render(request, 'blank.html', context)
