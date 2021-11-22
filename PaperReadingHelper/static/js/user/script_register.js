@@ -54,17 +54,6 @@ btn_Create.addEventListener('click', async() => {
     formData.append('login-id', document.getElementById('login-id').value);
     formData.append('login-password', document.getElementById('login-password').value);
     formData.append('login-email', document.getElementById('login-email').value);
-    
-    const data = {
-        'login-id': document.getElementById('login-id').value,
-        'login-password': document.getElementById('login-password').value,
-        'login-email': document.getElementById('login-email').value,
-    }
-
-    console.log(id);
-    console.log(password);
-    console.log(email);
-    const token = getCookie('csrftoken');
 
     const response = await fetch('', {
         method: 'POST',

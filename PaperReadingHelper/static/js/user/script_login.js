@@ -30,8 +30,11 @@ btnLogin.addEventListener('click', async() => {
     })
     const result = await response.json()
     if (result.success){
-        alert('성공!');
+        alert(result.message);
         location.href='/';
+    }
+    else {
+        alert(result.message);
     }
 
 })
