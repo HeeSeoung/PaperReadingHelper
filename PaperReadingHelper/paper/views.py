@@ -13,5 +13,6 @@ class HomeView(LoginRequiredMixin, View):
     def post(self, request: HttpRequest, *args, **kwargs):
         context = {}
         
+        file = request.FILES('customFile')
 
         return JsonResponse(context, content_type='application/json')

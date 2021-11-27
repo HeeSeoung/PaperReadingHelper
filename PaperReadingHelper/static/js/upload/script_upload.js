@@ -1,30 +1,30 @@
 'use strict';
 
-const btnUpload = document.getElementById('customFile');
+const btnUpload = document.getElementById('btn-upload');
 
-// btnUpload.addEventListener('change', async() =>{
+btnUpload.addEventListener('change', async() =>{
+    console.log("hello");
+    const formData = new FormData();
+    formData.append('customFile', document.getElementById('customFile')[0]);
 
-//     const formData = new FormData();
-//     formData.append('customFile', document.getElementById('customFile')[0]);
-
-//     const response = await fetch('', {
-//         method: 'POST',
-//         headers: {'X-CSRFToken': getCookie('csrftoken')},
-//         body: formData,
-//     })
-//     .catch((error) => {
-//         alert(error);
-//     })
-//     const result = await response.json()
-//     if (result.success){
-//         alert(result.message);
-//     }
-//     else {
-//         alert(result.message);
-//     }
+    const response = await fetch('', {
+        method: 'POST',
+        headers: {'X-CSRFToken': getCookie('csrftoken')},
+        body: formData,
+    })
+    .catch((error) => {
+        alert(error);
+    })
+    const result = await response.json()
+    if (result.success){
+        alert(result.message);
+    }
+    else {
+        alert(result.message);
+    }
 
 
-// })
+})
 
 function getCookie(name) {
     let cookieValue = null;
