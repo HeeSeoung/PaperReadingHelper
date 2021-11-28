@@ -161,10 +161,9 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="col-xl-12 col-lg-12">
+                <div class="col-xl-12 col-lg-7">
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
-                        <form>
                         <div
                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6 class="m-0 font-weight-bold text-primary">File Upload</h6>
@@ -183,20 +182,16 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <!-- Card Body -->
                         <div class="card-body">
                             <div> 
                                 <input class="form-control" type='file' id='customFile' accept=".pdf"/>
                                 <br>
-                                <div align="right">
-                                    <button class="btn btn-primary" type="button" id="btn-upload">
-                                        Upload
-                                    </button>
-                                </div>
+                                <button class="btn btn-primary" type="button" id="btn-upload">
+                                    Upload
+                                </button>
                             </div>
                         </div>
-                        </form>
                     </div>
                 </div>
 
@@ -239,16 +234,16 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}" defer></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}" defer></script>
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}" defer></script>
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{% static 'js/sb-admin-2.min.js' %}" defer></script>
-    <script src="{% static 'js/mainpage.js' %}" defer></script>
-    <script src="{% static 'js/upload/script_upload.js' %}" defer></script>
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+    <script src="{% static 'js/mainpage.js' %}"></script>
+    <script src="{% static 'js/upload/script_upload.js' %}"></script>
 </body>
 
 </html>

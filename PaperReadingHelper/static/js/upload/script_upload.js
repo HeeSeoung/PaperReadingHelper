@@ -1,8 +1,7 @@
 'use strict';
-
 const btnUpload = document.getElementById('btn-upload');
 
-btnUpload.addEventListener('change', async() =>{
+btnUpload.addEventListener('click', async() => {
     console.log("hello");
     const formData = new FormData();
     formData.append('customFile', document.getElementById('customFile')[0]);
