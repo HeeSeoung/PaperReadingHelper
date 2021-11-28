@@ -4,7 +4,7 @@ const btnUpload = document.getElementById('btn-upload');
 btnUpload.addEventListener('click', async() => {
     console.log("hello");
     const formData = new FormData();
-    formData.append('customFile', document.getElementById('customFile')[0]);
+    formData.append('customFile', document.getElementById('customFile').files[0]);
 
     const response = await fetch('', {
         method: 'POST',
