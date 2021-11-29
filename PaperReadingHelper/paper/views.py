@@ -5,8 +5,11 @@ from django.views.generic import View
 from django.core.files.storage import FileSystemStorage
 from .models import Paper
 
-import os, re
+import os
+import re
 from datetime import datetime
+from pdf2image import convert_from_path, convert_from_bytes
+
 
 class HomeView(LoginRequiredMixin, View):
     def get(self, request: HttpRequest, *args, **kwargs):
@@ -19,8 +22,8 @@ class HomeView(LoginRequiredMixin, View):
 
         try:
             file = request.FILES.get('customFile')
-            path = os.getcwd() + '/media/'
-
+            sep = os.sep
+            path = os.getcwd() + sep + 'media' + sep
             # 저장받을 파일 경로를 추가합니다.
             fs = FileSystemStorage(location=path, base_url=path)
 
@@ -31,11 +34,18 @@ class HomeView(LoginRequiredMixin, View):
             uploaded_file_url = fs.url(filename)
 
             data_created = Paper.objects.create(
-                user = request.user.id,
-                file_name = filename,
-                file_path = uploaded_file_url
+                user=request.user.id,
+                file_name=filename,
+                file_path=path
             )
-
+            print(path + filename)
+            images = convert_from_path(
+                path + filename, poppler_path="D:\\devfile\\poppler-21.11.0\\Library\\bin")
+            file_str_name = filename[:-4]
+            os.mkdir(path + sep + file_str_name)
+            for i, page in enumerate(images):
+                page.save(path+file_str_name + "\\" +
+                          file_str_name+str(i)+".jpg", "JPEG")
             context['success'] = True
             context['message'] = "업로드가 완료되었습니다."
 
