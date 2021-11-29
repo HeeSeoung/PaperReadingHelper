@@ -22,6 +22,7 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
     <link href="{%static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    
 
 </head>
 
@@ -161,9 +162,27 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="col-xl-12 col-lg-12">
+                <div class="col-xl-12 col-lg-12">                    
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
+                        <div id="bg_image" class="page-header"></div>
+                        <!-- <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
+                        <div class="file-upload">
+                        <!-- <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> -->
+
+                        <div class="image-upload-wrap">
+                            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                            <div class="drag-text">
+                                논문 pdf파일을 업로드 하세요!
+                            </div>
+                        </div>
+                        <div class="file-upload-content">
+                            <img class="file-upload-image" src="#" alt="your image" />
+                            <div class="image-title-wrap">
+                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                            </div>
+                        </div>
+                        </div>
                         <form>
                         <div
                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
