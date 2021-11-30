@@ -5,13 +5,16 @@ body {
 #mainpage_img_container {
   position: relative;
   text-align: center;
-  /* color: white; */
+  overflow: hidden;
 }
 #mainpage_img_container img {
   transition: all 1s;
+  overflow: hidden;
+  /* height: 400px; */
 }
 #mainpage_img_container:hover img {
-  filter: blur(10px);
+  filter: blur(20px) saturate(180%);
+  /* backdrop-filter: blur(10px); */
 }
 #mainpage_img_text {
   color: #222;
