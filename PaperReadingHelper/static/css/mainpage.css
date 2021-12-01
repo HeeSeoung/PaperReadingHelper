@@ -95,13 +95,6 @@ body {
   height: 100%;
   width: 100%;
 }
-
-.image-dropping,
-.image-upload-wrap:hover {
-  /* background-color: #c9c9c9; */
-  /* border: 2px dashed #ffffff; */
-}
-
 .image-title-wrap {
   padding: 0 15px 15px 15px;
   color: #222;
