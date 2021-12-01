@@ -6,11 +6,10 @@ body {
   position: relative;
   text-align: center;
   overflow: hidden;
+  height: 600px;
 }
 #mainpage_img_container img {
   transition: all 1s;
-  overflow: hidden;
-  /* height: 400px; */
 }
 #mainpage_img_container:hover img {
   filter: blur(20px) saturate(180%);
