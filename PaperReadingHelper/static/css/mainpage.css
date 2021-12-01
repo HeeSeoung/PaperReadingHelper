@@ -33,6 +33,14 @@ body {
   opacity: 0;
   cursor: pointer;
 }
+#mainpage_img_container > div > button {
+  background-color: #4f8bf1;
+  border-color: #4f8af100;
+  transition: all 0.5s;
+}
+#mainpage_img_container > div > button:hover {
+  background-color: blue;
+}
 .file-upload {
   /* background-image: url("img/mainpage_bg.jpg"); */
   /* background-color: #ffffff; */
