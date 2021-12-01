@@ -52,7 +52,7 @@ class HomeView(LoginRequiredMixin, View):
             return JsonResponse(context, content_type='application/json')
 
         except Exception as e:
-            context['success'] = True
+            context['success'] = False
             context['message'] = e
 
             return JsonResponse(context, content_type='application/json')
