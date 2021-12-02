@@ -8,8 +8,7 @@ body {
   overflow: hidden;
   height: 600px;
 }
-#mainpage_img_container img {
-  filter: brightness(1.2);
+#mainpage_img_container img {  
   transition: all 1s;
 }
 #mainpage_img_container:hover img {
@@ -17,14 +16,14 @@ body {
   /* backdrop-filter: blur(10px); */
 }
 #mainpage_img_text {
-  color: #222;
+  color: rgb(17, 17, 17);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-#mainpage_img_text > h3 {
-  text-shadow:3px 3px 5px #5a5a5a;
+#mainpage_img_text h3 {  
+  text-shadow: 2px 2px 6px rgb(169, 169, 169);
 }
 .file-upload-input {
   position: absolute;
@@ -44,9 +43,6 @@ body {
 }
 #mainpage_img_container > div > button:hover {
   background-color: blue;
-}
-#text_area {
-  height: 400px;
 }
 .file-upload {
   /* background-image: url("img/mainpage_bg.jpg"); */
