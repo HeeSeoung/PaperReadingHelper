@@ -9,6 +9,7 @@ body {
   height: 600px;
 }
 #mainpage_img_container img {
+  filter: brightness(1.2);
   transition: all 1s;
 }
 #mainpage_img_container:hover img {
@@ -21,6 +22,9 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+#mainpage_img_text > h3 {
+  text-shadow:3px 3px 5px #5a5a5a;
 }
 .file-upload-input {
   position: absolute;
