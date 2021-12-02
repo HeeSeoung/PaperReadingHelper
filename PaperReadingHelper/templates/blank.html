@@ -10,16 +10,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>EPRH</title>
+    <link href="{% static 'css/mainpage.css' %}" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'css/mainpage.css' %}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+    
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
-    <link href="{%static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
   </head>
 
@@ -43,94 +43,99 @@
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
-          <div class="col-xl-12 col-lg-12 mb-4">
-            <!-- <div class="file-upload"> <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> <div class="image-upload-wrap"> <input class="file-upload-input" type='file' onchange="readURL(this);" accept=".pdf" id='customFile'/> <div class="drag-text"> 논문 pdf파일을 업로드 하세요! </div> </div> <div class="file-upload-content"> <img class="file-upload-image" src="#" alt="your image" /> <div class="image-title-wrap"> <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button> </div> </div> </div> -->
+          <div class="col-xl-12 col-lg-12 mb-4">            
+            <!-- <div class="file-upload"> <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> <div class="image-upload-wrap"> <input class="file-upload-input" type='file' onchange="readURL(this);" accept=".pdf" id='customFile'/> <div class="drag-text"> 논문 pdf파일을 업로드 하세요! </div> </div> <div class="file-upload-content"> <img class="file-upload-image" src="#" alt="your image" /> <div class="image-title-wrap"> <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button> </div> </div> </div> -->            
             <div class="row" id="mainpage_img_container">
-              <img src="{%static 'img/mainpage_bg2.jpg'%}" class="img-fluid">
+              <img src="{%static 'img/mainpage_bg2.jpg'%}" class="img-fluid pr-0 pl-0">
               <input class="file-upload-input" type='file' accept=".pdf" id="customFile" onchange="readURL(this);"/>
               <div id="mainpage_img_text">
                 <h4 class="drag-text">pdf파일을 클릭이나 드래그해서 업로드 하세요!</h4>
                 <button class="btn btn-primary mt-3" type="button" id="btn-upload">업로드 하기</button>
-              </div>
+              </div>              
             </div>
           </div>
-          <div>
-            <div class="row">
-              <div class="col-xl-6 col-lg-6">
-                <div class="row">텍스트</div>
-                <div class="card shadow mb-4">
+          <div class="row">
+            <div class="col-xl-2 col-lg-2"></div>
+            <div class="col-xl-4 col-lg-4">
+              <div class="card shadow mb-4">
 
-                  <!-- Card Header - Dropdown -->
-                  <form>
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                      <h6 class="m-0 font-weight-bold text-primary">File Upload</h6>
-                      <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                          <div class="dropdown-header">Dropdown Header:</div>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                <!-- Card Header - Dropdown -->
+                <form>
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary justify-content-center">OCR 텍스트</h6>
+                    <div class="dropdown no-arrow">
+                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
                       </div>
                     </div>
+                  </div>
 
-                    <!-- Card Body -->
-                    <div class="card-body">
-                      <div>
-                        <input class="form-control" type='file' id='customFile' accept=".pdf"/>
-                        <br>
-                        <div align="right">
-                          <button class="btn btn-primary" type="button" id="btn-upload">
-                            Upload
-                          </button>
-                        </div>
-                      </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div style="height: 400px;"></div>
+                    <div id="text_area" align="center">              
+                      <button class="btn btn-primary" type="button" id="btn-upload">
+                        변역하기
+                      </button>
+                      <button class="btn btn-primary" type="button" id="btn-upload">
+                        시각화
+                      </button>        
+                      {% comment %} <input class="form-control" type='file' id='customFile' accept=".pdf"/>
+                      <br>
+                      <div align="right">
+                        <button class="btn btn-primary" type="button" id="btn-upload">
+                          Upload
+                        </button>
+                      </div> {% endcomment %}
                     </div>
-                  </form>
-                </div>
-              </div>
-
-              <div class="col-xl-6 col-lg-6">
-                <div class="card shadow mb-4">
-                  <!-- Card Header - Dropdown -->
-                  <form>
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                      <h6 class="m-0 font-weight-bold text-primary">File Upload</h6>
-                      <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                          <div class="dropdown-header">Dropdown Header:</div>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Card Body -->
-                    <div class="card-body">
-                      <div>
-                        <input class="form-control" type='file' id='customFile' accept=".pdf"/>
-                        <br>
-                        <div align="right">
-                          <button class="btn btn-primary" type="button" id="btn-upload">
-                            Upload
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
+                  </div>
+                </form>
               </div>
             </div>
+            <div class="col-xl-4 col-lg-4">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <form>
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-auto font-weight-bold text-primary">업로드 이미지</h6>
+                    <div class="dropdown no-arrow">
+                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div style="height: 400px;"></div>
+                    <div align="center">
+                      {% comment %} <input class="form-control" type='file' id='customFile' accept=".pdf"/> {% endcomment %}
+                      {% comment %} <br>                       {% endcomment %}
+                      <button class="btn btn-primary" type="button" id="btn-upload">
+                        유사 논문 찾기
+                      </button>                      
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-2"></div>
           </div>
+
 
         </div>
         <!-- End of Main Content -->
