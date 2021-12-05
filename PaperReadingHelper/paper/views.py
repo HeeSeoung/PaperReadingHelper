@@ -14,8 +14,9 @@ from pdf2image import convert_from_path, convert_from_bytes
 class HomeView(LoginRequiredMixin, View):
     def get(self, request: HttpRequest, *args, **kwargs):
         context = {}
+        context['user_id'] = request.user.id
 
-        return render(request, 'blank.html', context)
+        return render(request, 'main.html', context)
 
     def post(self, request: HttpRequest, *args, **kwargs):
         context = {}

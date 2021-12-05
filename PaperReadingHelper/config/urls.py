@@ -8,5 +8,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('paper.urls')),
     path('', include('user.urls')),
+    path('', include('mypage.urls')),
 
 ]

@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'config',
     'user',
     'paper',
+    'mypage',
 ]
 
 MIDDLEWARE = [
