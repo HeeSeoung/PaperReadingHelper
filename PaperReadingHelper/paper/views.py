@@ -43,8 +43,7 @@ class HomeView(LoginRequiredMixin, View):
                 file_path=path
             )
             print(path + filename)
-            images = convert_from_path(
-                path + filename, poppler_path="D:\\devfile\\poppler-21.11.0\\Library\\bin")
+            images = convert_from_path(path + filename)
             file_str_name = filename[:-4]
             os.mkdir(path + sep + file_str_name)
             for i, page in enumerate(images):

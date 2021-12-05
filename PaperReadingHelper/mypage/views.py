@@ -12,7 +12,10 @@ class UserView(LoginRequiredMixin, View):
         context = {}
 
         data = model.Paper.objects.filter(user=id)
-        data.index = list(range(0, len(data) + 1))
+        j = 1
+        for i in data:
+            i.index = j
+            j += 1
         context['data'] = data
 
         context['user_id'] = request.user.id
