@@ -43,12 +43,20 @@
 
           <!-- Begin Page Content -->
           <div class="col-xl-12 col-lg-12 mb-4">            
-            <!-- <div class="file-upload"> <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> <div class="image-upload-wrap"> <input class="file-upload-input" type='file' onchange="readURL(this);" accept=".pdf" id='customFile'/> <div class="drag-text"> 논문 pdf파일을 업로드 하세요! </div> </div> <div class="file-upload-content"> <img class="file-upload-image" src="#" alt="your image" /> <div class="image-title-wrap"> <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button> </div> </div> </div> -->            
+            <script>
+              function loadFile(input) {
+                  var file = input.files[0];	//선택된 파일 가져오기
+                  //미리 만들어 놓은 div에 text(파일 이름) 추가
+                  var name = document.getElementById('input_text_name');
+                  name.textContent = "파일 이름: " + file.name;
+              };
+            </script>
             <div class="row" id="mainpage_img_container">
               <img src="{%static 'img/mainpage_bg3.jpg'%}" class="img-fluid pr-0 pl-0">
-              <input class="file-upload-input" type='file' accept=".pdf" id="customFile" onchange="readURL(this);"/>
+              <input class="file-upload-input" type='file' accept=".pdf" id="customFile" onchange="loadFile(this);"/>
               <div id="mainpage_img_text">
                 <h3 class="drag-text font-weight-bold">Pdf파일을 클릭이나 드래그해서 업로드 하세요!</h3>
+                <h5 id="input_text_name"></h5>
                 <button class="btn btn-primary mt-3" type="button" id="btn-upload">업로드 하기</button>
               </div>              
             </div>
