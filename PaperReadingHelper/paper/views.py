@@ -4,6 +4,7 @@ from django.http import HttpRequest, JsonResponse
 from django.views.generic import View
 from django.core.files.storage import FileSystemStorage
 from .models import Paper
+from django.contrib.auth.models import User
 
 import os
 import re
@@ -12,9 +13,11 @@ from pdf2image import convert_from_path, convert_from_bytes
 
 
 class HomeView(LoginRequiredMixin, View):
-    def get(self, request: HttpRequest, *args, **kwargs):
+    def get(self, request: HttpRequest):
         context = {}
+
         context['user_id'] = request.user.id
+        context['user_name'] = User.objects.filter(id=request.user.id).values_list('username', flat=True)[0]
 
         return render(request, 'main.html', context)
 
