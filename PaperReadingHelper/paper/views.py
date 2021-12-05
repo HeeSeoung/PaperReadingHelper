@@ -46,8 +46,9 @@ class HomeView(LoginRequiredMixin, View):
             images = convert_from_path(path + filename)
             file_str_name = filename[:-4]
             os.mkdir(path + sep + file_str_name)
+            set = os.sep
             for i, page in enumerate(images):
-                page.save(path+file_str_name + "\\" +
+                page.save(path+file_str_name + sep +
                           file_str_name+str(i)+".jpg", "JPEG")
             context['success'] = True
             context['message'] = "업로드가 완료되었습니다."
