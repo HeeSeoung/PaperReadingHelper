@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 
 import os
 import re
+import requests
 from datetime import datetime
 from pdf2image import convert_from_path, convert_from_bytes
 
@@ -46,10 +47,28 @@ class HomeView(LoginRequiredMixin, View):
             images = convert_from_path(path + filename)
             file_str_name = filename[:-4]
             os.mkdir(path + sep + file_str_name)
-            set = os.sep
+            sep = os.sep
             for i, page in enumerate(images):
                 page.save(path+file_str_name + sep +
-                          file_str_name+str(i)+".jpg", "JPEG")
+                          file_str_name+str(i)+".png", "PNG")
+            image_path = path + file_str_name
+
+            li = []
+            headers = {'Content-Type': 'image/*; charset=utf-8'}
+            for i in os.listdir(image_path):
+
+                headers = {
+                    'accept': '*/*',
+                    'Content-Type': 'image/*',
+                }
+
+                print(image_path + sep + i)
+                files = {'images': open('/Users/hiseoung/VSCodeProjects/toy/ToyProject/AIServer/test.PNG', 'rb')}
+
+                response = requests.post('http://127.0.0.1:58717/predict', headers=headers, files=files)
+                print(response.text)
+
+            
             context['success'] = True
             context['message'] = "업로드가 완료되었습니다."
 
