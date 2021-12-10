@@ -9,5 +9,5 @@ urlpatterns = [
     path('', include('paper.urls')),
     path('', include('user.urls')),
     path('', include('mypage.urls')),
-
+    path('', include('visual.urls')),
 ]

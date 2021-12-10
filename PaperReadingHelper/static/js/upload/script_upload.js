@@ -15,14 +15,20 @@ btnUpload.addEventListener('click', async() => {
         alert(error);
     })
     const result = await response.json()
+    console.log(result.file_name);    
     if (result.success){
-        alert(result.message);
+        alert(result.message);        
     }
     else {
         alert(result.message);
     }
-
-
+    const btnVisual = document.getElementById('btn-visual');
+    btnVisual.addEventListener('click', () => {
+        let obj={
+            file_name: result.file_name
+        }      
+        window.location.href = 'http://127.0.0.1:8000/visual/' +'?' + $.param(obj);        
+    })
 })
 
 function getCookie(name) {

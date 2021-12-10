@@ -37,41 +37,44 @@ class HomeView(LoginRequiredMixin, View):
 
             # 파일 저장된 디렉터리 경로 저장
             uploaded_file_url = fs.url(filename)
-
+            text = 'ddd, aaa, ccc, eee'
             data_created = Paper.objects.create(
                 user=request.user.id,
                 file_name=filename,
-                file_path=path
+                file_path=path,
+                file_text=text
             )
-            print(path + filename)
-            images = convert_from_path(path + filename)
-            file_str_name = filename[:-4]
-            os.mkdir(path + sep + file_str_name)
-            sep = os.sep
-            for i, page in enumerate(images):
-                page.save(path+file_str_name + sep +
-                          file_str_name+str(i)+".png", "PNG")
-            image_path = path + file_str_name
+            data = Paper.objects.filter(file_name=filename).values_list('file_name')[0][0]            
+            context['file_name'] = data
+            # print(path + filename)
+            # images = convert_from_path(path + filename)
+            # file_str_name = filename[:-4]
+            # os.mkdir(path + sep + file_str_name)
+            # sep = os.sep
+            # for i, page in enumerate(images):
+            #     page.save(path+file_str_name + sep +
+            #               file_str_name+str(i)+".png", "PNG")
+            # image_path = path + file_str_name
 
-            li = []
-            headers = {'Content-Type': 'image/*; charset=utf-8'}
-            for i in os.listdir(image_path):
+            # li = []
+            # headers = {'Content-Type': 'image/*; charset=utf-8'}
+            # for i in os.listdir(image_path):
 
-                headers = {
-                    'accept': '*/*',
-                    'Content-Type': 'image/*',
-                }
+            #     headers = {
+            #         'accept': '*/*',
+            #         'Content-Type': 'image/*',
+            #     }
 
-                print(image_path + sep + i)
-                files = {'images': open('/Users/hiseoung/VSCodeProjects/toy/ToyProject/AIServer/test.PNG', 'rb')}
+            #     print(image_path + sep + i)
+            #     files = {'images': open('/Users/hiseoung/VSCodeProjects/toy/ToyProject/AIServer/test.PNG', 'rb')}
 
-                response = requests.post('http://127.0.0.1:58717/predict', headers=headers, files=files)
-                print(response.text)
+            #     response = requests.post('http://127.0.0.1:58717/predict', headers=headers, files=files)
+            #     print(response.text)
 
             
             context['success'] = True
             context['message'] = "업로드가 완료되었습니다."
-
+            # serializers.serialize('json', qs)
             return JsonResponse(context, content_type='application/json')
 
         except Exception as e:
