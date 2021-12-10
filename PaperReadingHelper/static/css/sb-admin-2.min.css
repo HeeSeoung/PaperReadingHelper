@@ -9923,10 +9923,11 @@ a:focus {
     height: calc(20rem - 43px) !important;
   }
 }
-.bg-login-image {
-  background: url(https://source.unsplash.com/K4mSJ7kc0As/600x800);
+.bg-login-image {  
+  /* background: url(https://source.unsplash.com/K4mSJ7kc0As/600x800); */
   background-position: center;
   background-size: cover;
+  background: url('../img/mainpage_bg3.jpg');
 }
 .bg-register-image {
   background: url(https://source.unsplash.com/Mv9hjnEUHR4/600x800);

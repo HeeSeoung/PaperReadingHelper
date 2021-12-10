@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>EPRH - Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -23,7 +23,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body>
 
     <div class="container">
 
@@ -40,43 +40,41 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">로그인</h1>
                                     </div>
                                     <form id='LoginForm'>
                                     {% csrf_token %}
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 id="login-id" aria-describedby="emailHelp"
-                                                placeholder="Enter Your ID" onkeyup="enterkey()">
+                                                placeholder="아이디" onkeyup="enterkey()">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="login-password" placeholder="Password" onkeyup="enterkey()">
+                                                id="login-password" placeholder="비밀번호" onkeyup="enterkey()">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+                                                <label class="custom-control-label" for="customCheck">로그인 상태 유지하기</label>
                                             </div>
                                         </div>
                                             <button class="btn btn-primary btn-user btn-block" type="button" id="login-btn" >
-                                            Login
+                                            로그인
                                             </button>
                                         <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                        <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
                                         <a href="index.html" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
+                                        </a> -->
                                     </form>
-                                    <hr>
-                                    <div class="text-center">
+                                    <!-- <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
+                                    </div> -->
                                     <div class="text-center">
-                                        <a class="small" href="/register">Create an Account!</a>
+                                        <a class="small" href="/register">계정 만들기</a>
                                     </div>
                                 </div>
                             </div>

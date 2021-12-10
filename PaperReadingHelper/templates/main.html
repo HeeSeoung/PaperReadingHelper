@@ -52,11 +52,11 @@
               };
             </script>
             <div class="row" id="mainpage_img_container">
-              <img src="{%static 'img/mainpage_bg3.jpg'%}" class="img-fluid pr-0 pl-0">
+              <img src="{%static 'img/mainpage_bg3.jpg'%}" class="pr-0 pl-0">
               <input class="file-upload-input" type='file' accept=".pdf" id="customFile" onchange="loadFile(this);"/>
               <div id="mainpage_img_text">
                 <h3 class="drag-text font-weight-bold">Pdf파일을 클릭이나 드래그해서 업로드 하세요!</h3>
-                <h5 id="input_text_name"></h5>
+                <div id="input_text_name"></div>
                 <button class="btn btn-primary mt-3" type="button" id="btn-upload">업로드 하기</button>
               </div>              
             </div>
@@ -64,80 +64,52 @@
           <div class="row">
             <div class="col-xl-2 col-lg-2"></div>
             <div class="col-xl-4 col-lg-4">
-              <div class="card shadow mb-4">
-
+              <div class="card shadow mb-4 text-center">
                 <!-- Card Header - Dropdown -->
-                <form>
-                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="font-weight-bold text-primary justify-content-center text-center">OCR 텍스트</h6>
-                    <div class="dropdown no-arrow">
-                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Dropdown Header:</div>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Card Body -->
-                  <div class="card-body">
-                    <div style="height: 400px;"></div>
-                    <div id="text_area" align="center">              
+                <div class="card-header py-3 font-weight-bolder">
+                  OCR 텍스트
+                </div>                
+                <div class="card-body">
+                  <div style="height: 400px;"></div>
+                  <div id="text_area" align="center">              
+                    <button class="btn btn-primary" type="button" id="btn-upload">
+                      변역하기
+                    </button>
+                    <button class="btn btn-primary" type="button" id="btn-upload">
+                      시각화
+                    </button>        
+                    {% comment %} <input class="form-control" type='file' id='customFile' accept=".pdf"/>
+                    <br>
+                    <div align="right">
                       <button class="btn btn-primary" type="button" id="btn-upload">
-                        변역하기
+                        Upload
                       </button>
-                      <button class="btn btn-primary" type="button" id="btn-upload">
-                        시각화
-                      </button>        
-                      {% comment %} <input class="form-control" type='file' id='customFile' accept=".pdf"/>
-                      <br>
-                      <div align="right">
-                        <button class="btn btn-primary" type="button" id="btn-upload">
-                          Upload
-                        </button>
-                      </div> {% endcomment %}
-                    </div>
+                    </div> {% endcomment %}
                   </div>
-                </form>
+                </div>                
               </div>
             </div>
             <div class="col-xl-4 col-lg-4">
-              <div class="card shadow mb-4">
+              <div class="card shadow mb-4 text-center">
                 <!-- Card Header - Dropdown -->
-                <form>
-                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-auto font-weight-bold text-primary">업로드 이미지</h6>
-                    <div class="dropdown no-arrow">
-                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Dropdown Header:</div>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Card Body -->
-                  <div class="card-body">
-                    <div style="height: 400px;"></div>
-                    <div align="center">
-                      {% comment %} <input class="form-control" type='file' id='customFile' accept=".pdf"/> {% endcomment %}
-                      {% comment %} <br>                       {% endcomment %}
+                <div class="card-header py-3 font-weight-bolder">
+                  업로드 한 이미지
+                </div>                
+                <div class="card-body">
+                  <div style="height: 400px;"></div>
+                  <div id="text_area" align="center">              
+                    <button class="btn btn-primary" type="button" id="btn-upload">
+                      유사 논문 찾기
+                    </button>                    
+                    {% comment %} <input class="form-control" type='file' id='customFile' accept=".pdf"/>
+                    <br>
+                    <div align="right">
                       <button class="btn btn-primary" type="button" id="btn-upload">
-                        유사 논문 찾기
-                      </button>                      
-                    </div>
+                        Upload
+                      </button>
+                    </div> {% endcomment %}
                   </div>
-                </form>
+                </div>                
               </div>
             </div>
             <div class="col-xl-2 col-lg-2"></div>

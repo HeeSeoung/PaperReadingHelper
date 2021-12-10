@@ -6,17 +6,18 @@ body {
   position: relative;
   text-align: center;
   overflow: hidden;
-  height: 600px;
+  height: 400px;
 }
 #mainpage_img_container img {  
   transition: all 1s;
 }
 #mainpage_img_container:hover img {
-  filter: blur(20px) saturate(180%);
+  filter: blur(20px);
   /* backdrop-filter: blur(10px); */
 }
 #mainpage_img_text {
   color: rgb(17, 17, 17);
+  width: fit-content;
   position: absolute;
   top: 50%;
   left: 50%;
