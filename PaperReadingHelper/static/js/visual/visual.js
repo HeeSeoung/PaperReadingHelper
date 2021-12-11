@@ -1,3 +1,22 @@
+let wordcloud_data = new Array();
+console.log(wordcloud_text[0]);
+for (var text in wordcloud_text) {    
+    console.log(text);
+    let wordcloud_item = new Object();
+    wordcloud_item.x = wordcloud_text[text][0];
+    wordcloud_item.value = wordcloud_text[text][1];
+    wordcloud_data.push(wordcloud_item);
+}
+
+  // create a chart and set the data
+chart = anychart.tagCloud(wordcloud_data);
+
+// set the container id
+chart.container("wordcloud");
+// initiate drawing the chart
+chart.draw();
+
+
 // let search = location.search.substring(1);
 // let searchObj = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
 // console.log(searchObj);

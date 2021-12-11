@@ -5,23 +5,28 @@ from django.views.generic import View
 from paper import models as model
 from django.contrib.auth.models import User
 
-# from nltk.tokenize import word_tokenize, sent_tokenize
-# import nltk
+from nltk.tokenize import word_tokenize, sent_tokenize
+import nltk
 import re
-
+from collections import Counter
 class VisualView(LoginRequiredMixin, View):
     def get(self, request: HttpRequest):
         context = {}
         try:
-            file = request.GET.get('file_name')        
-            data = model.Paper.objects.filter(file_name=file).values_list('file_text', flat=True)[0] 
-            data = 'I am a resident of Cansinghill Apartments, located right next to the newly opened Vuenna Dog Park. As I live with three dogs, I am very happy to let my dogs run around and safely play with other dogs from the neighborhood. However, the noise of barking and yelling from the park at night is so loud and disturbing that I cannot relax in my apartment. Many of my apartment neighbors also seriously complain about this noise. I want immediate action to solve this urgent problem.'       
+            # file = request.GET.get('file_name')        
+            file = 'hrnet_M838A12.pdf'            
+            all_text = ''
+            data = model.Paper.objects.filter(file_name=file).values_list('file_text', flat=True)
+            for page in data:
+                all_text += page                      
         except:
             print('안됨')
             data = 'dddd,sad,f,adf,a,f,asdf,as'
-        # data = '\n'.join(data)      
+        # data = ','.join(data) 
+        all_text = all_text[2:]
+        all_text = all_text[:-1]        
         nltk.download('punkt')
-        data = re.sub(r'\([^)]*\)', '', data)
+        data = re.sub(r'\([^)]*\)', '', all_text)
         data = sent_tokenize(data)
         normalized_text = []
         for string in data:
@@ -29,8 +34,24 @@ class VisualView(LoginRequiredMixin, View):
             normalized_text.append(tokens)
 
         # 각 문장에 대해서 NLTK를 이용하여 단어 토큰화를 수행.
-        result = [word_tokenize(sentence) for sentence in normalized_text]
-        print(result)
+        w2v_text = []
+        wordcolud_text = []
+        for sentense in normalized_text:                 
+            sentense_tok = word_tokenize(sentense)            
+            w2v_text.append(sentense_tok)
+            wordcolud_text = wordcolud_text + sentense_tok        
+        # text = [word_tokenize(sentence) for sentence in normalized_text]
+        def wordcolud(text):                  
+            counts = Counter(text)
+            result = counts.most_common(40)
+            result = [[i, j] for i,j in result]
+            # for i in range(len(result)):
+            #     result[i] = dict(result[i])                
+            return result
+        wordcolud_text = wordcolud(wordcolud_text)                
+        context['wordcloud'] = wordcolud_text
+        print(wordcolud_text)
+        # print(text)
         # context['text_freq'] = data
 
         # context['user_id'] = request.user.id

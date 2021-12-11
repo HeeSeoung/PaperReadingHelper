@@ -43,7 +43,9 @@ class HomeView(LoginRequiredMixin, View):
             # context['file_name'] = data
 
             print(path + filename)
-            images = convert_from_path(path + filename)
+            # images = convert_from_path(path + filename)
+            images = convert_from_path(path + filename, poppler_path='D:\\devfile\\poppler-21.11.0\\Library\\bin')
+            
             file_str_name = filename[:-4]
             os.mkdir(path + sep + file_str_name)
             sep = os.sep
@@ -52,26 +54,27 @@ class HomeView(LoginRequiredMixin, View):
                           file_str_name+str(i)+".png", "PNG")
             image_path = path + file_str_name
 
-            for idx, i in enumerate(os.listdir(image_path)):
+            # for idx, i in enumerate(os.listdir(image_path)):
 
-                path = image_path + sep + i
-                print(image_path + sep + i)
+            #     path = image_path + sep + i
+            #     print(image_path + sep + i)
 
-                files = {
-                    'image_file': (f'{path}', open(f'{path}', 'rb')),
-                }
+            #     files = {
+            #         'image_file': (f'{path}', open(f'{path}', 'rb')),
+            #     }
 
-                response = requests.post('http://127.0.0.1:49306/predict', files=files)
-                # print(','.join(response.text))
+            #     # response = requests.post('http://127.0.0.1:49306/predict', files=files)
+            #     response = requests.post('http://127.0.0.1:62049/predict', files=files)
+            #     # print(','.join(response.text))
 
-                data_created = Paper.objects.create(
-                    user=request.user.id,
-                    file_name=filename,
-                    file_path=path,
-                    file_text=response.text.encode('utf8'),
-                    page_number = idx
-                )
-
+            #     data_created = Paper.objects.create(
+            #         user=request.user.id,
+            #         file_name=filename,
+            #         file_path=path,
+            #         file_text=response.text.encode('utf8'),
+            #         page_number = idx
+            #     )
+            context['file_name'] = filename
             context['success'] = True
             context['message'] = "업로드가 완료되었습니다."
             # serializers.serialize('json', qs)
