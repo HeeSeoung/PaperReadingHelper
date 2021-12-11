@@ -16,7 +16,8 @@ btnUpload.addEventListener('click', async() => {
     })
     const result = await response.json()
     console.log(result.file_name);    
-    if (result.success){
+    if (result.success){        
+        $('#myModal').modal('hide');
         alert(result.message);        
     }
     else {

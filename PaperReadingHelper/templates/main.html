@@ -57,10 +57,50 @@
               <div id="mainpage_img_text">
                 <h3 class="drag-text font-weight-bold">Pdf파일을 클릭이나 드래그해서 업로드 하세요!</h3>
                 <div id="input_text_name"></div>
-                <button class="btn btn-primary mt-3" type="button" id="btn-upload">업로드 하기</button>
+                <button class="btn btn-primary mt-3" type="button" id="btn-upload" data-toggle="modal" data-target="#myModal">업로드 하기</button>
               </div>              
             </div>
-          </div>
+          </div>                
+          <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <!-- <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> -->
+                <div class="modal-body">
+                  <div class='loader-container'>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                  업로드, 텍스트 인식 진행 중 입니다
+                </div>
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Understood</button>
+                </div> -->
+              </div>
+            </div>
+          </div>              
+          <!-- <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">×</button>
+                  <h4 class="modal-title">모달 제목</h4>
+                </div>
+                <div class="modal-body">
+                  <p>팝업 내용</p>
+                </div>
+                <div class="modal-footer">
+                  <p>팝업 footer</p>
+                </div>
+              </div>
+            </div>
+          </div> -->
           <div class="row">
             <div class="col-xl-2 col-lg-2"></div>
             <div class="col-xl-4 col-lg-4">

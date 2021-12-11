@@ -45,6 +45,8 @@ body {
 #mainpage_img_container > div > button:hover {
   background-color: blue;
 }
+
+
 .file-upload {
   /* background-image: url("img/mainpage_bg.jpg"); */
   /* background-color: #ffffff; */
