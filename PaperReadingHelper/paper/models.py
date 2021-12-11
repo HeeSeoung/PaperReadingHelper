@@ -9,6 +9,7 @@ class Paper(models.Model):
     content = models.TextField(db_column="content", null=True)
     file_path = models.CharField(db_column="file_path", max_length=250, null=True)
     file_text = models.TextField(db_column='file_text', null=True)
+    page_number = models.IntegerField(db_column='page_number', null=True)
     upload_date = models.DateTimeField(auto_now=True)
 
 

@@ -29,6 +29,7 @@ class HomeView(LoginRequiredMixin, View):
             file = request.FILES.get('customFile')
             sep = os.sep
             path = os.getcwd() + sep + 'media' + sep
+
             # 저장받을 파일 경로를 추가합니다.
             fs = FileSystemStorage(location=path, base_url=path)
 
@@ -37,16 +38,9 @@ class HomeView(LoginRequiredMixin, View):
 
             # 파일 저장된 디렉터리 경로 저장
             uploaded_file_url = fs.url(filename)
-            text = 'ddd, aaa, ccc, eee'
-            data_created = Paper.objects.create(
-                user=request.user.id,
-                file_name=filename,
-                file_path=path,
-                file_text=text
-            )
 
-            data = Paper.objects.filter(file_name=filename).values_list('file_name')[0][0]            
-            context['file_name'] = data
+            # data = Paper.objects.filter(file_name=filename).values_list('file_name')[0]            
+            # context['file_name'] = data
 
             print(path + filename)
             images = convert_from_path(path + filename)
@@ -58,7 +52,7 @@ class HomeView(LoginRequiredMixin, View):
                           file_str_name+str(i)+".png", "PNG")
             image_path = path + file_str_name
 
-            for i in os.listdir(image_path):
+            for idx, i in enumerate(os.listdir(image_path)):
 
                 path = image_path + sep + i
                 print(image_path + sep + i)
@@ -68,7 +62,15 @@ class HomeView(LoginRequiredMixin, View):
                 }
 
                 response = requests.post('http://127.0.0.1:49306/predict', files=files)
-                print(response.text)
+                # print(','.join(response.text))
+
+                data_created = Paper.objects.create(
+                    user=request.user.id,
+                    file_name=filename,
+                    file_path=path,
+                    file_text=response.text.encode('utf8'),
+                    page_number = idx
+                )
 
             context['success'] = True
             context['message'] = "업로드가 완료되었습니다."
