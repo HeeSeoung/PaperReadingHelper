@@ -8,12 +8,13 @@ for (var text in wordcloud_text) {
     wordcloud_data.push(wordcloud_item);
 }
 
-  // create a chart and set the data
 chart = anychart.tagCloud(wordcloud_data);
-
-// set the container id
 chart.container("wordcloud");
-// initiate drawing the chart
+chart.draw();
+
+chart = anychart.bar();
+let series = chart.bar(wordcloud_data.slice(undefined, 5));
+chart.container("barchart");
 chart.draw();
 
 

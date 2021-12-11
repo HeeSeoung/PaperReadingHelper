@@ -29,7 +29,9 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
+        <style>
+            .anychart-credits{display: none;}
+        </style>
         <!-- Sidebar -->
         
         <!-- End of Sidebar -->
@@ -46,14 +48,8 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid mt-5">
-                    <script>
-                        // wordcloud_text = new Array();
-                        wordcloud_text = {{ wordcloud|safe }};
-                        // for(const key in wordcloud_text) {
-                        //     console.log(key);
-                        //     console.log(wordcloud_text[key]);
-                        // }                    
-                        console.log(wordcloud_text);                     
+                    <script>                        
+                        const wordcloud_text = {{ wordcloud|safe }};                        
                     </script>
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 mx-2 text-gray-800">시각화</h1>                    
@@ -63,13 +59,13 @@
 
                             <!-- Area Chart -->
                             <div class="card shadow mb-4">                                
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">워드 클라우드</h6>
+                                </div>
                                 <div class="chart-area"  style="height: 400px;">
                                     <div id="wordcloud" style='height: 400px;'></div>
                                 </div>
-                                <!-- <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
-                                </div>
-                                <div class="card-body">
+                                <!-- <div class="card-body">
                                     <div class="chart-area">
                                         <canvas id="myAreaChart"></canvas>
                                     </div>
@@ -80,13 +76,15 @@
                             <!-- Bar Chart -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">많이 나온 단어 (Top5)</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="chart-bar">
+                                    <!-- <div class="chart-area"  style="height: 300px;">
+                                        <div id="barchart" style='height: 300px;'></div>
+                                    </div> -->
+                                    <!-- <div class="chart-bar">
                                         <canvas id="myBarChart"></canvas>
-                                    </div>
-                                    <hr>                                    
+                                    </div> -->                                                                 
                                 </div>
                             </div>
 
@@ -101,10 +99,9 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <hr>                                    
+                                    <div class="chart-area"  style="height: 400px;">
+                                        <div id="barchart" style='height: 400px;'></div>
+                                    </div>            
                                 </div>
                             </div>
                         </div>

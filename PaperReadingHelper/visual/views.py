@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.http import HttpRequest, JsonResponse
 from django.views.generic import View
+from nltk.util import pr
 from paper import models as model
 from django.contrib.auth.models import User
 
@@ -9,6 +10,7 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 import nltk
 import re
 from collections import Counter
+from gensim.models import Word2Vec
 class VisualView(LoginRequiredMixin, View):
     def get(self, request: HttpRequest):
         context = {}
@@ -31,8 +33,7 @@ class VisualView(LoginRequiredMixin, View):
         normalized_text = []
         for string in data:
             tokens = re.sub(r"[^a-z0-9]+", " ", string.lower())
-            normalized_text.append(tokens)
-
+            normalized_text.append(tokens)        
         # 각 문장에 대해서 NLTK를 이용하여 단어 토큰화를 수행.
         w2v_text = []
         wordcolud_text = []
@@ -44,13 +45,17 @@ class VisualView(LoginRequiredMixin, View):
         def wordcolud(text):                  
             counts = Counter(text)
             result = counts.most_common(40)
-            result = [[i, j] for i,j in result]
-            # for i in range(len(result)):
-            #     result[i] = dict(result[i])                
+            result = [[i, j] for i,j in result]          
             return result
         wordcolud_text = wordcolud(wordcolud_text)                
         context['wordcloud'] = wordcolud_text
-        print(wordcolud_text)
+        # print(wordcolud_text)            
+
+        def word2vecmodel(text):      
+            model = Word2Vec(sentences=text, vector_size=100, window=5, min_count=1, workers=4)            
+            # model_result = model.wv.most_similar("and")
+            print(model.wv.vectors_for_all)            
+        word2vecmodel(w2v_text)
         # print(text)
         # context['text_freq'] = data
 
