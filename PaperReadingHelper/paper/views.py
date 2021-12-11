@@ -44,34 +44,32 @@ class HomeView(LoginRequiredMixin, View):
                 file_path=path,
                 file_text=text
             )
+
             data = Paper.objects.filter(file_name=filename).values_list('file_name')[0][0]            
             context['file_name'] = data
-            # print(path + filename)
-            # images = convert_from_path(path + filename)
-            # file_str_name = filename[:-4]
-            # os.mkdir(path + sep + file_str_name)
-            # sep = os.sep
-            # for i, page in enumerate(images):
-            #     page.save(path+file_str_name + sep +
-            #               file_str_name+str(i)+".png", "PNG")
-            # image_path = path + file_str_name
 
-            # li = []
-            # headers = {'Content-Type': 'image/*; charset=utf-8'}
-            # for i in os.listdir(image_path):
+            print(path + filename)
+            images = convert_from_path(path + filename)
+            file_str_name = filename[:-4]
+            os.mkdir(path + sep + file_str_name)
+            sep = os.sep
+            for i, page in enumerate(images):
+                page.save(path+file_str_name + sep +
+                          file_str_name+str(i)+".png", "PNG")
+            image_path = path + file_str_name
 
-            #     headers = {
-            #         'accept': '*/*',
-            #         'Content-Type': 'image/*',
-            #     }
+            for i in os.listdir(image_path):
 
-            #     print(image_path + sep + i)
-            #     files = {'images': open('/Users/hiseoung/VSCodeProjects/toy/ToyProject/AIServer/test.PNG', 'rb')}
+                path = image_path + sep + i
+                print(image_path + sep + i)
 
-            #     response = requests.post('http://127.0.0.1:58717/predict', headers=headers, files=files)
-            #     print(response.text)
+                files = {
+                    'image_file': (f'{path}', open(f'{path}', 'rb')),
+                }
 
-            
+                response = requests.post('http://127.0.0.1:49306/predict', files=files)
+                print(response.text)
+
             context['success'] = True
             context['message'] = "업로드가 완료되었습니다."
             # serializers.serialize('json', qs)

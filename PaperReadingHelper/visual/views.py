@@ -5,8 +5,8 @@ from django.views.generic import View
 from paper import models as model
 from django.contrib.auth.models import User
 
-from nltk.tokenize import word_tokenize, sent_tokenize
-import nltk
+# from nltk.tokenize import word_tokenize, sent_tokenize
+# import nltk
 import re
 
 class VisualView(LoginRequiredMixin, View):
