@@ -4,3 +4,9 @@
 #table_row:hover{
     background-color: rgb(218, 218, 218);
 }
+#dataTable_length > label >select{
+    width: 50px
+}
+.odd {
+    background-color: gainsboro;
+}

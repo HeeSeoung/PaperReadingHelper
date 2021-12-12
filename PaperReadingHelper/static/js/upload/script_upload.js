@@ -2,11 +2,11 @@
 const btnUpload = document.getElementById('btn-upload');
 const paper_img = document.getElementById('paper-img');
 const paper_text = document.getElementById('paper-text');
-let paper_order = 0;
+const btnVisual = document.getElementById('btn-visual');
 btnUpload.addEventListener('click', async() => {
+    let paper_order = 0;
     console.log("hello");
     const formData = new FormData();
-    const btnVisual = document.getElementById('btn-visual');
     formData.append('customFile', document.getElementById('customFile').files[0]);
 
     const response = await fetch('', {
@@ -36,30 +36,30 @@ btnUpload.addEventListener('click', async() => {
     else {
         alert(result.message);
     }
-    btnVisual.addEventListener('click', () => {
-        let obj={
-            file_name: result.file_name
-        }      
-        window.location.href = 'http://127.0.0.1:8000/visual/' +'?' + $.param(obj);        
-    })
-    const btnNext = document.getElementById('btn-next');
-    btnNext.addEventListener('click', () => {
-        console.log(result.paper_text.length);
-        console.log(paper_order);
-        if (paper_order < result.paper_text.length - 1){            
-            paper_order ++;
-            paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
-            paper_text.innerText = result.paper_text[paper_order];
-        }
-    })
-    const btnPrev = document.getElementById('btn-prev');
-    btnPrev.addEventListener('click', () => {
-        if (paper_order > 0){            
-            paper_order --;
-            paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
-            paper_text.innerText = result.paper_text[paper_order];
-        }
-    })
+})
+btnVisual.addEventListener('click', () => {
+    let obj={
+        file_name: result.file_name
+    }      
+    window.location.href = 'http://127.0.0.1:8000/visual/' +'?' + $.param(obj);        
+})
+const btnNext = document.getElementById('btn-next');
+btnNext.addEventListener('click', () => {
+    console.log(result.paper_text.length);
+    console.log(paper_order);
+    if (paper_order < result.paper_text.length - 1){            
+        paper_order ++;
+        paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
+        paper_text.innerText = result.paper_text[paper_order];
+    }
+})
+const btnPrev = document.getElementById('btn-prev');
+btnPrev.addEventListener('click', () => {
+    if (paper_order > 0){            
+        paper_order --;
+        paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
+        paper_text.innerText = result.paper_text[paper_order];
+    }
 })
 
 function getCookie(name) {
