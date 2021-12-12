@@ -11,6 +11,7 @@ import re
 import requests
 from datetime import datetime
 from pdf2image import convert_from_path, convert_from_bytes
+from ast import literal_eval
 
 
 class HomeView(LoginRequiredMixin, View):
@@ -24,6 +25,7 @@ class HomeView(LoginRequiredMixin, View):
 
     def post(self, request: HttpRequest, *args, **kwargs):
         context = {}
+        paper_text = []
 
         try:
             file = request.FILES.get('customFile')
@@ -51,29 +53,34 @@ class HomeView(LoginRequiredMixin, View):
             sep = os.sep
             for i, page in enumerate(images):
                 page.save(path+file_str_name + sep +
-                          file_str_name+str(i)+".png", "PNG")
+                        file_str_name+str(i)+".png", "PNG")
             image_path = path + file_str_name
 
-            # for idx, i in enumerate(os.listdir(image_path)):
+            for idx, i in enumerate(os.listdir(image_path)):
 
-            #     path = image_path + sep + i
-            #     print(image_path + sep + i)
+                path = image_path + sep + i
+                print(image_path + sep + i)
 
-            #     files = {
-            #         'image_file': (f'{path}', open(f'{path}', 'rb')),
-            #     }
+                files = {
+                    'image_file': (f'{path}', open(f'{path}', 'rb')),
+                }
 
-            #     # response = requests.post('http://127.0.0.1:49306/predict', files=files)
-            #     response = requests.post('http://127.0.0.1:62049/predict', files=files)
-            #     # print(','.join(response.text))
-
-            #     data_created = Paper.objects.create(
-            #         user=request.user.id,
-            #         file_name=filename,
-            #         file_path=path,
-            #         file_text=response.text.encode('utf8'),
-            #         page_number = idx
-            #     )
+                #response = requests.post('http://127.0.0.1:49306/predict', files=files)
+                response = requests.post('http://127.0.0.1:55586/predict', files=files)    
+                t = response.text.encode('utf-8')
+                t = t.decode('utf-8')                
+                data_created = Paper.objects.create(
+                    user=request.user.id,
+                    file_name=filename,
+                    file_path=path,
+                    file_text=t.encode('utf8'),
+                    page_number = idx
+                )
+                t = literal_eval(t)['text']
+                t = ' '.join(str(_) for _ in t)
+                print(t)
+                paper_text.append(t)
+            context['paper_text'] = paper_text
             context['file_name'] = filename
             context['success'] = True
             context['message'] = "업로드가 완료되었습니다."

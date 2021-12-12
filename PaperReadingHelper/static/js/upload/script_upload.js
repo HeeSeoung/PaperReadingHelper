@@ -1,9 +1,12 @@
 'use strict';
 const btnUpload = document.getElementById('btn-upload');
-
+const paper_img = document.getElementById('paper-img');
+const paper_text = document.getElementById('paper-text');
+let paper_order = 0;
 btnUpload.addEventListener('click', async() => {
     console.log("hello");
     const formData = new FormData();
+    const btnVisual = document.getElementById('btn-visual');
     formData.append('customFile', document.getElementById('customFile').files[0]);
 
     const response = await fetch('', {
@@ -15,20 +18,47 @@ btnUpload.addEventListener('click', async() => {
         alert(error);
     })
     const result = await response.json()
-    console.log(result.file_name);    
+    console.log(result.file_text);
+    let file_name_path = result.file_name.slice(0, -4);    
     if (result.success){        
-        $('#myModal').modal('hide');
-        alert(result.message);        
+        // $(".modal-body").html("업로드 완료되었습니다!");        
+        paper_img.style.height = '500px';
+        paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
+        const next_button = document.createElement('button');
+        const prev_button = document.createElement('button');
+        btnVisual.classList.remove('d-none');
+        document.getElementById('btn-trans').classList.remove('d-none');
+        document.getElementById('btn-next').classList.remove('d-none');
+        document.getElementById('btn-prev').classList.remove('d-none');        
+        paper_text.innerText = result.paper_text[0];
+        $('#myModal').modal('hide');      
     }
     else {
         alert(result.message);
     }
-    const btnVisual = document.getElementById('btn-visual');
     btnVisual.addEventListener('click', () => {
         let obj={
             file_name: result.file_name
         }      
         window.location.href = 'http://127.0.0.1:8000/visual/' +'?' + $.param(obj);        
+    })
+    const btnNext = document.getElementById('btn-next');
+    btnNext.addEventListener('click', () => {
+        console.log(result.paper_text.length);
+        console.log(paper_order);
+        if (paper_order < result.paper_text.length - 1){            
+            paper_order ++;
+            paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
+            paper_text.innerText = result.paper_text[paper_order];
+        }
+    })
+    const btnPrev = document.getElementById('btn-prev');
+    btnPrev.addEventListener('click', () => {
+        if (paper_order > 0){            
+            paper_order --;
+            paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
+            paper_text.innerText = result.paper_text[paper_order];
+        }
     })
 })
 
