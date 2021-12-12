@@ -69,6 +69,8 @@ class HomeView(LoginRequiredMixin, View):
                 response = requests.post('http://127.0.0.1:55586/predict', files=files)    
                 t = response.text.encode('utf-8')
                 t = t.decode('utf-8')                
+                t = literal_eval(t)['text']
+                t = ' '.join(str(_) for _ in t)
                 data_created = Paper.objects.create(
                     user=request.user.id,
                     file_name=filename,
@@ -76,8 +78,6 @@ class HomeView(LoginRequiredMixin, View):
                     file_text=t.encode('utf8'),
                     page_number = idx
                 )
-                t = literal_eval(t)['text']
-                t = ' '.join(str(_) for _ in t)
                 print(t)
                 paper_text.append(t)
             context['paper_text'] = paper_text

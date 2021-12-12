@@ -3,8 +3,10 @@ const btnUpload = document.getElementById('btn-upload');
 const paper_img = document.getElementById('paper-img');
 const paper_text = document.getElementById('paper-text');
 const btnVisual = document.getElementById('btn-visual');
+let paper_order = 0;
+let result;
+let file_name_path;
 btnUpload.addEventListener('click', async() => {
-    let paper_order = 0;
     console.log("hello");
     const formData = new FormData();
     formData.append('customFile', document.getElementById('customFile').files[0]);
@@ -17,15 +19,13 @@ btnUpload.addEventListener('click', async() => {
     .catch((error) => {
         alert(error);
     })
-    const result = await response.json()
+    result = await response.json()
     console.log(result.file_text);
-    let file_name_path = result.file_name.slice(0, -4);    
+    file_name_path = result.file_name.slice(0, -4);    
     if (result.success){        
         // $(".modal-body").html("업로드 완료되었습니다!");        
         paper_img.style.height = '500px';
         paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
-        const next_button = document.createElement('button');
-        const prev_button = document.createElement('button');
         btnVisual.classList.remove('d-none');
         document.getElementById('btn-trans').classList.remove('d-none');
         document.getElementById('btn-next').classList.remove('d-none');
