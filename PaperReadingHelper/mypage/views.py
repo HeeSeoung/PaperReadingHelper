@@ -30,10 +30,9 @@ class UserDetailView(LoginRequiredMixin, View):
 
         file_name = request.GET.get('filename')                
         filetext = list(model.Paper.objects.filter(file_name=file_name).values_list('file_text', flat=True))
-        filename = model.Paper.objects.filter(file_name=file_name).values_list('file_name', flat=True)[0]
         
         context['paper_text'] = filetext
-        context['file_name'] = filename
+        context['file_name'] = file_name
         context['user_id'] = request.user.id
         context['user_name'] = User.objects.filter(id=request.user.id).values_list('username', flat=True)[0]
 
