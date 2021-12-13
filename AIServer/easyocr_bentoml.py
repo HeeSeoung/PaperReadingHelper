@@ -17,8 +17,6 @@ class EasyOCRService(bentoml.BentoService):
 import easyocr
 import torch
 
-USE_CUDA = torch.cuda.is_available()
-device = torch.device('cuda:0' if USE_CUDA else 'cpu')
 service = EasyOCRService()
 lang_list = ['en']
 model = easyocr.Reader(lang_list=lang_list, download_enabled=True)
