@@ -13,12 +13,12 @@ chart.container("wordcloud");
 chart.draw();
 
 chart = anychart.bar();
-let series = chart.bar(wordcloud_data.slice(undefined, 5));
+let bar_text = chart.bar(wordcloud_data.slice(undefined, 5));
 chart.container("barchart");
 chart.draw();
 
-chart_pie = anychart.pie();
-let series_2 = chart_pie.pie(wordcloud_data.slice(undefined, 5));
+chart_pie = anychart.pie(wordcloud_data.slice(undefined, 5));
+chart_pie.innerRadius("30%");
 chart_pie.container("piechart");
 chart_pie.draw();
 
