@@ -42,7 +42,7 @@ class VisualView(LoginRequiredMixin, View):
                     'mightn', "mightn't", 'mustn', "mustn't", 'needn', "needn't", 'shan', "shan't",
                     'shouldn', "shouldn't", 'wasn', "wasn't", 'weren', "weren't", 'won', "won't", 'wouldn', "wouldn't"]     
         nltk.download('punkt')
-        data = re.sub(r'\([^)]*\)', '', all_text)
+        data = re.sub(r"[^a-zA-Z0-9]", '', all_text)
         # data = sent_tokenize(data)
         # normalized_text = []
         # for string in data:
