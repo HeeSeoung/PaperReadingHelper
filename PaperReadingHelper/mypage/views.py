@@ -4,7 +4,6 @@ from django.http import HttpRequest, JsonResponse
 from django.views.generic import View
 from paper import models as model
 from django.contrib.auth.models import User
-from .models import Paper
 
 
 
@@ -30,14 +29,14 @@ class UserDetailView(LoginRequiredMixin, View):
         context = {}
 
         file_name = request.GET.get('filename')                
-        filetext = list(Paper.objects.filter(file_name=file_name).values_list('file_text', flat=True))
-        filename = Paper.objects.filter(file_name=file_name).values_list('file_name', flat=True)[0]
+        filetext = list(model.Paper.objects.filter(file_name=file_name).values_list('file_text', flat=True))
+        filename = model.Paper.objects.filter(file_name=file_name).values_list('file_name', flat=True)[0]
         
         context['paper_text'] = filetext
         context['file_name'] = filename
         context['user_id'] = request.user.id
         context['user_name'] = User.objects.filter(id=request.user.id).values_list('username', flat=True)[0]
 
-        return render(request, 'mypage.html', context)
+        return render(request, 'detailpage.html', context)
 
     
