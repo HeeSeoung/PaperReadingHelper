@@ -42,7 +42,7 @@ class VisualView(LoginRequiredMixin, View):
                     'mightn', "mightn't", 'mustn', "mustn't", 'needn', "needn't", 'shan', "shan't",
                     'shouldn', "shouldn't", 'wasn', "wasn't", 'weren', "weren't", 'won', "won't", 'wouldn', "wouldn't"]     
         nltk.download('punkt')
-        data = re.sub(r"[^a-zA-Z0-9]", '', all_text)
+        data = re.sub(r'\([^)]*\)', '', all_text)
         # data = sent_tokenize(data)
         # normalized_text = []
         # for string in data:
@@ -55,10 +55,10 @@ class VisualView(LoginRequiredMixin, View):
         for token in tokens:                 
             if token not in stop_words:
                 w2v_text.append(token)
-                wordcolud_text.append(token)       
+                wordcolud_text.append(token)     
         # text = [word_tokenize(sentence) for sentence in normalized_text]
         
-        wordcolud_text = wordcolud(wordcolud_text)                
+        wordcolud_text = wordcolud(' '.join(wordcolud_text))                
         context['wordcloud'] = wordcolud_text
         # print(wordcolud_text)            
 
