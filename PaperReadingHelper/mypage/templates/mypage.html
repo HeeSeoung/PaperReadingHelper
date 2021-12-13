@@ -72,7 +72,7 @@
                                                 <td>{{row.file_name}}</td>
                                                 <td>{{row.upload_date}}</td>
                                                 <td>
-                                                    <button class="btn btn-primary" id="{{row.index}}" value="{{row.file_name}}">다시보기</button>
+                                                    <a type="button" href= "./detail?file_name={{ row.file_name }}" class="btn btn-primary" id="{{row.index}}" value="{{row.file_name}}">다시보기</a>
                                                 </td>
                                             </tr>                                        
                                         {% endfor%}                                        
