@@ -49,7 +49,7 @@ class VisualView(LoginRequiredMixin, View):
             normalized_text.append(tokens)        
         # 각 문장에 대해서 NLTK를 이용하여 단어 토큰화를 수행.
         w2v_text = []
-        wordcolud_text = ''
+        wordcolud_text = []
         for sentense in normalized_text:                 
             sentense_tok = word_tokenize(sentense)
             if sentense_tok not in stop_words:
