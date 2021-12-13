@@ -52,10 +52,11 @@ class VisualView(LoginRequiredMixin, View):
         wordcolud_text = []
         for sentense in normalized_text:                 
             sentense_tok = word_tokenize(sentense)
-            if sentense_tok not in stop_words:
-                print(sentense_tok)           
-                w2v_text.append(sentense_tok)
-                wordcolud_text = wordcolud_text + sentense_tok        
+            for tok in sentense_tok:
+                if tok not in stop_words:
+                    print(tok)           
+                    w2v_text.append(tok)
+                    wordcolud_text.append(tok)        
         # text = [word_tokenize(sentence) for sentence in normalized_text]
         
         wordcolud_text = wordcolud(wordcolud_text)                
