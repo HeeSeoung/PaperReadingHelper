@@ -17,6 +17,26 @@ let series = chart.bar(wordcloud_data.slice(undefined, 5));
 chart.container("barchart");
 chart.draw();
 
+const myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+    datasets: [{
+        data: wordcloud_data,      // 섭취량, 총급여량 - 섭취량
+        borderWidth: 0,
+        scaleBeginAtZero: true,
+    }]},
+    options: {
+    responsive: true,
+    plugins: {
+        legend: {
+        position: 'top',
+        },
+        title: {
+        display: true,
+        text: 'Chart.js Doughnut Chart'
+        }
+    }},
+});
 
 // let search = location.search.substring(1);
 // let searchObj = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
