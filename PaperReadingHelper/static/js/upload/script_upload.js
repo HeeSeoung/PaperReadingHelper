@@ -26,10 +26,10 @@ btnUpload.addEventListener('click', async() => {
         // $(".modal-body").html("업로드 완료되었습니다!");        
         paper_img.style.height = '500px';
         paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
-        btnVisual.classList.remove('d-none');
-        document.getElementById('btn-trans').classList.remove('d-none');
-        document.getElementById('btn-next').classList.remove('d-none');
-        document.getElementById('btn-prev').classList.remove('d-none');        
+        // btnVisual.classList.remove('d-none');
+        // document.getElementById('btn-trans').classList.remove('d-none');
+        // document.getElementById('btn-next').classList.remove('d-none');
+        // document.getElementById('btn-prev').classList.remove('d-none');        
         paper_text.innerText = result.paper_text[0];
         $('#myModal').modal('hide');      
     }

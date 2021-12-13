@@ -7,11 +7,11 @@ try{
   if (file_name_reload != '') {    
     let file_name_path = file_name_reload.slice(0, -4);
     paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order_reload)+".png";    
-    btnVisual.classList.remove('d-none');
-    document.getElementById('btn-trans').classList.remove('d-none');
-    document.getElementById('btn-next').classList.remove('d-none');
-    document.getElementById('btn-prev').classList.remove('d-none');
-    paper_text.innerText = result.paper_text[0];
+    // btnVisual.classList.remove('d-none');
+    // document.getElementById('btn-trans').classList.remove('d-none');
+    // document.getElementById('btn-next').classList.remove('d-none');
+    // document.getElementById('btn-prev').classList.remove('d-none');
+    // paper_text.innerText = result.paper_text[0];
   }
 }
 catch {
