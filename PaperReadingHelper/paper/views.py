@@ -64,7 +64,7 @@ class HomeView(LoginRequiredMixin, View):
                     'image_file': (f'{path}', open(f'{path}', 'rb')),
                 }
 
-                response = requests.post('http://127.0.0.1:49180/predict', files=files)    
+                response = requests.post('http://127.0.0.1:43733/predict', files=files)    
                 text = response.json()
                 text = ' '.join(text)
 
