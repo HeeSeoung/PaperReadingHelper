@@ -5,28 +5,23 @@ from django.views.generic import View
 from nltk.util import pr
 from paper import models as model
 from django.contrib.auth.models import User
-
 from nltk.tokenize import word_tokenize, sent_tokenize
 import nltk
 import re
 from collections import Counter
 from gensim.models import Word2Vec
+
 class VisualView(LoginRequiredMixin, View):
     def get(self, request: HttpRequest):
         context = {}
         try:
-            # file = request.GET.get('file_name')        
-            file = 'hrnet_M838A12.pdf'            
-            all_text = ''
-            data = model.Paper.objects.filter(file_name=file).values_list('file_text', flat=True)
-            for page in data:
-                all_text += page                      
+            file = request.GET.get('filename')                
+            data = list(model.Paper.objects.filter(file_name=file).values_list('file_text', flat=True))
+
         except:
             print('안됨')
             data = 'dddd,sad,f,adf,a,f,asdf,as'
-        # data = ','.join(data) 
-        all_text = all_text[2:]
-        all_text = all_text[:-1]        
+        all_text = ' '.join(data)       
         nltk.download('punkt')
         data = re.sub(r'\([^)]*\)', '', all_text)
         data = sent_tokenize(data)
@@ -42,11 +37,7 @@ class VisualView(LoginRequiredMixin, View):
             w2v_text.append(sentense_tok)
             wordcolud_text = wordcolud_text + sentense_tok        
         # text = [word_tokenize(sentence) for sentence in normalized_text]
-        def wordcolud(text):                  
-            counts = Counter(text)
-            result = counts.most_common(40)
-            result = [[i, j] for i,j in result]          
-            return result
+        
         wordcolud_text = wordcolud(wordcolud_text)                
         context['wordcloud'] = wordcolud_text
         # print(wordcolud_text)            
@@ -78,3 +69,11 @@ class VisualView(LoginRequiredMixin, View):
     #         context['message'] = e
 
     #         return JsonResponse(context, content_type='application/json')
+
+def wordcolud(text):
+    
+    counts = Counter(text)
+    result = counts.most_common(40)
+    result = [[i, j] for i,j in result]          
+
+    return result

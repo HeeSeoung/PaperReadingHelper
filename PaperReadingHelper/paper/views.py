@@ -65,13 +65,8 @@ class HomeView(LoginRequiredMixin, View):
                 }
 
                 response = requests.post('http://127.0.0.1:53075/predict', files=files)
-                print(type(response)) 
-                print(response)
                 text = response.json()
-                print(type(text))
-                print(text)
                 text = ' '.join(text)
-                print(text)
 
                 # t = response.text.encode('utf-8')
                 # t = t.decode('utf-8')                
