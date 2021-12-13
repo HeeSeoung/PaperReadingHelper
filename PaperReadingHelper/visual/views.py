@@ -23,7 +23,6 @@ class VisualView(LoginRequiredMixin, View):
             print('안됨')
 
         all_text = ' '.join(data)
-        all_text = all_text.lower()
         stop_words = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're",
                     "you've", "you'll", "you'd", 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his',
                     'himself', 'she', "she's", 'her', 'hers', 'herself', 'it', "it's", 'its', 'itself', 'they',
@@ -43,22 +42,22 @@ class VisualView(LoginRequiredMixin, View):
                     'shouldn', "shouldn't", 'wasn', "wasn't", 'weren', "weren't", 'won', "won't", 'wouldn', "wouldn't"]     
         nltk.download('punkt')
         data = re.sub(r'\([^)]*\)', '', all_text)
-        # data = sent_tokenize(data)
-        # normalized_text = []
-        # for string in data:
-        #     tokens = re.sub(r"[^a-z0-9]+", " ", string.lower())
-        #     normalized_text.append(tokens)        
+        data = sent_tokenize(data)
+        normalized_text = []
+        for string in data:
+            tokens = re.sub(r"[^a-z0-9]+", " ", string.lower())
+            normalized_text.append(tokens)        
         # 각 문장에 대해서 NLTK를 이용하여 단어 토큰화를 수행.
         w2v_text = []
         wordcolud_text = []
-        tokens = word_tokenize(data)  
-        for token in tokens:                 
-            if token not in stop_words:
-                w2v_text.append(token)
-                wordcolud_text.append(token)     
+        for sentense in normalized_text:                 
+            sentense_tok = word_tokenize(sentense)
+            if sentense_tok not in stop_words:            
+                w2v_text.append(sentense_tok)
+                wordcolud_text = wordcolud_text + sentense_tok        
         # text = [word_tokenize(sentence) for sentence in normalized_text]
         
-        wordcolud_text = wordcolud(' '.join(wordcolud_text))                
+        wordcolud_text = wordcolud(wordcolud_text)                
         context['wordcloud'] = wordcolud_text
         # print(wordcolud_text)            
 
@@ -66,7 +65,7 @@ class VisualView(LoginRequiredMixin, View):
             model = Word2Vec(sentences=text, vector_size=100, window=5, min_count=1, workers=4)            
             # model_result = model.wv.most_similar("and")
             print(model.wv.vectors_for_all)            
-        # word2vecmodel(w2v_text)
+        word2vecmodel(w2v_text)
         # print(text)
         # context['text_freq'] = data
 
