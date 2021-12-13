@@ -18,7 +18,7 @@ chart.container("barchart");
 chart.draw();
 
 chart_pie = anychart.pie();
-let series_2 = chart_pie.bar(wordcloud_data.slice(undefined, 5));
+let series_2 = chart_pie.pie(wordcloud_data.slice(undefined, 5));
 chart_pie.container("piechart");
 chart_pie.draw();
 
