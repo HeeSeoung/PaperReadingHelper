@@ -7,6 +7,7 @@ from paper import models as model
 from django.contrib.auth.models import User
 from nltk.tokenize import word_tokenize, sent_tokenize
 import nltk
+from nltk.corpus import stopwords
 import re
 from collections import Counter
 from gensim.models import Word2Vec
@@ -15,20 +16,23 @@ class VisualView(LoginRequiredMixin, View):
     def get(self, request: HttpRequest):
         context = {}
         try:
+
             file = request.GET.get('filename')                
             data = list(model.Paper.objects.filter(file_name=file).values_list('file_text', flat=True))
 
         except:
             print('안됨')
-            data = 'dddd,sad,f,adf,a,f,asdf,as'
-        all_text = ' '.join(data)       
+
+        all_text = ' '.join(data)
+        stop_words = set(stopwords.words('english'))       
         nltk.download('punkt')
         data = re.sub(r'\([^)]*\)', '', all_text)
         data = sent_tokenize(data)
         normalized_text = []
         for string in data:
-            tokens = re.sub(r"[^a-z0-9]+", " ", string.lower())
-            normalized_text.append(tokens)        
+            if string not in stop_words:
+                tokens = re.sub(r"[^a-z0-9]+", " ", string.lower())
+                normalized_text.append(tokens)        
         # 각 문장에 대해서 NLTK를 이용하여 단어 토큰화를 수행.
         w2v_text = []
         wordcolud_text = []
