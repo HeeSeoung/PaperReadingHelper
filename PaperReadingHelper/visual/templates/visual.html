@@ -52,72 +52,85 @@
                         const wordcloud_text = {{ wordcloud|safe }};                        
                     </script>
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 mx-2 text-gray-800">시각화</h1>                    
-                    <div class="row">
+                    <h1 class="h3 mb-2 mx-2 text-gray-800">시각화</h1>
+                    
 
-                        <div class="col-xl-8 col-lg-7">
-
-                            <!-- Area Chart -->
-                            <div class="card shadow mb-4">                                
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">워드 클라우드</h6>
-                                </div>
-                                <div class="chart-area"  style="height: 400px;">
-                                    <div id="wordcloud" style='height: 400px;'></div>
-                                </div>
-                                <!-- <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
+                    <div class="row g-0">
+                        <div class="col-lg-6 pe-lg-2 mb-3">
+                            <div class="card h-lg-100 overflow-hidden">
+                                <div class="card-header">
+                                    <div class="row flex-between-end">
+                                        <div class="col-auto flex-lg-grow-1 flex-lg-basis-0 align-self-center">
+                                            <h5 class="mb-0" data-anchor="data-anchor">WorldCloud</h5>
+                                        </div>
                                     </div>
-                                    <hr>
-                                </div> -->
-                            </div>
-
-                            <!-- Bar Chart -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">많이 나온 단어 (Top5)</h6>
                                 </div>
-                                <div class="card-body">
-                                    <!-- <div class="chart-area"  style="height: 300px;">
-                                        <div id="barchart" style='height: 300px;'></div>
-                                    </div> -->
-                                    <!-- <div class="chart-bar">
-                                        <canvas id="myBarChart"></canvas>
-                                    </div> -->                                                                 
+                                <div class="card-body bg-light">
+                                    <div class="tab-content">
+                                        <div class="chart-area"  style="height: 400px;">
+                                            <div id="wordcloud" style='height: 400px;'></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
-
-                        <!-- Donut Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                        <div class="col-lg-6 pe-lg-2 mb-3">
+                            <div class="card h-lg-100 overflow-hidden">
+                                <div class="card-header">
+                                    <div class="row flex-between-end">
+                                        <div class="col-auto flex-lg-grow-1 flex-lg-basis-0 align-self-center">
+                                            <h5 class="mb-0" data-anchor="data-anchor">PieChart</h5>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area"  style="height: 400px;">
-                                        <div id="barchart" style='height: 400px;'></div>
-                                    </div>            
+                                <div class="card-body bg-light">
+                                    <div class="tab-content">
+                                        <div class="chart-area"  style="height: 400px;">
+                                            <div id="wordcloud" style='height: 400px;'></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- DataTales Example -->
-                    <!-- <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">파일목록</h6>
-                        </div>
-                        <div class="card-body">                            
-                        </div>
-                    </div> -->
 
+                    <div class="row g-0">
+                        <div class="col-lg-6 pe-lg-2 mb-3">
+                            <div class="card h-lg-100 overflow-hidden">
+                                <div class="card-header">
+                                    <div class="row flex-between-end">
+                                        <div class="col-auto flex-lg-grow-1 flex-lg-basis-0 align-self-center">
+                                            <h5 class="mb-0" data-anchor="data-anchor">Embeding Projection</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body bg-light">
+                                    <div class="tab-content">
+                                        <div class="chart-area"  style="height: 400px;">
+                                            <div id="wordcloud" style='height: 400px;'></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 pe-lg-2 mb-3">
+                            <div class="card h-lg-100 overflow-hidden">
+                                <div class="card-header">
+                                    <div class="row flex-between-end">
+                                        <div class="col-auto flex-lg-grow-1 flex-lg-basis-0 align-self-center">
+                                            <h5 class="mb-0" data-anchor="data-anchor">Most Common Word Top5</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body bg-light">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary"></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 
