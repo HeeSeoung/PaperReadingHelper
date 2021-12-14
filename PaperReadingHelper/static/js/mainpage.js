@@ -19,6 +19,7 @@ if (file_name_reload != '') {
 btnTrans.addEventListener('click', async () => {
     
     console.log("dfdfdfdfdfdfdffffffffffffffffffff");
+    console.log("file_name_reload");
     const formData = new FormData();
     formData.append('file_name', file_name_reload);
 
