@@ -6,6 +6,7 @@ const btnVisual = document.getElementById('btn-visual');
 let paper_order = 0;
 let result;
 let file_name_path;
+let file_name;
 btnUpload.addEventListener('click', async() => {
     console.log("hello");
     const formData = new FormData();
@@ -21,6 +22,7 @@ btnUpload.addEventListener('click', async() => {
     })
     result = await response.json()
     console.log(result.file_text);
+    file_name = result.file_name;
     file_name_path = result.file_name.slice(0, -4);    
     console.log(result.paper_text);
     if (result.success){        
@@ -79,3 +81,35 @@ function getCookie(name) {
         }
     return cookieValue;
     }
+
+const btnTrans = document.getElementById('btn-trans');
+const textTrans = document.getElementById('translated-text');
+
+btnTrans.addEventListener('click', async () => {
+    
+    console.log("dfdfdfdfdfdfdffffffffffffffffffff");
+    console.log(file_name);
+    const formData = new FormData();
+    formData.append('file_name', file_name);
+
+    const response = await fetch('', {
+        method: 'PUT',
+        headers: {'X-CSRFToken': getCookie('csrftoken')},
+        body: formData,
+    })
+    .catch((error) => {
+        alert(error);
+    })
+    result = await response.json();
+
+    if (result.success){        
+        // $(".modal-body").html("업로드 완료되었습니다!");  
+        textTrans.innerText = result.result_text[0];
+        $('#myModal').modal('hide');
+        $('#translation-modal').modal('show');
+    }
+    else {
+        alert(result.message);
+    }
+})
+    
