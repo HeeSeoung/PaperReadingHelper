@@ -1,7 +1,7 @@
 const url = new URL(location.href);
 const urlParams = url.searchParams;
-const btnTrans = document.getElementById('btn-trans')
-const textTrans = document.getElementById('translated-text')
+const btnTrans = document.getElementById('btn-trans');
+const textTrans = document.getElementById('translated-text');
 
 try{
   let paper_order_reload = 0;
@@ -21,8 +21,9 @@ catch {
   console.log("파일 이름 없음");
 }
 
-btnTrans.addEventListener('clcik', async () => {
+btnTrans.addEventListener('click', async () => {
     
+    console.log("dfdfdfdfdfdfdffffffffffffffffffff");
     const formData = new FormData();
     formData.append('file_name', file_name);
 
@@ -34,7 +35,7 @@ btnTrans.addEventListener('clcik', async () => {
     .catch((error) => {
         alert(error);
     })
-    result = await response.json()
+    result = await response.json();
 
     if (result.success){        
         // $(".modal-body").html("업로드 완료되었습니다!");  
