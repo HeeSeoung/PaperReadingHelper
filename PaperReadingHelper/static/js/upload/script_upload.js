@@ -29,8 +29,7 @@ btnUpload.addEventListener('click', async() => {
     file_name_path = result.file_name.slice(0, -4);    
     // console.log(result.paper_text);
     if (result.success){        
-        // $(".modal-body").html("업로드 완료되었습니다!");        
-        paper_img.style.height = '500px';
+        // $(".modal-body").html("업로드 완료되었습니다!");                
         paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
         document.getElementById('btn-visual').setAttribute('href', `/visual?filename=${result.file_name}`)
         btnVisual.classList.remove('d-none');
