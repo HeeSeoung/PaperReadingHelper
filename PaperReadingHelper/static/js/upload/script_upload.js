@@ -33,8 +33,8 @@ btnUpload.addEventListener('click', async() => {
         paper_img.style.height = '500px';
         paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
         document.getElementById('btn-visual').setAttribute('href', `/visual?filename=${result.file_name}`)
-        // btnVisual.classList.remove('d-none');
-        // document.getElementById('btn-trans').classList.remove('d-none');
+        btnVisual.classList.remove('d-none');
+        document.getElementById('btn-trans').classList.remove('d-none');
         // document.getElementById('btn-next').classList.remove('d-none');
         // document.getElementById('btn-prev').classList.remove('d-none');        
         paper_text.innerText = result.paper_text[0];
