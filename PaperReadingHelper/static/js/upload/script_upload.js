@@ -3,6 +3,8 @@ const btnUpload = document.getElementById('btn-upload');
 const paper_img = document.getElementById('paper-img');
 const paper_text = document.getElementById('paper-text');
 const btnVisual = document.getElementById('btn-visual');
+const btnTrans = document.getElementById('btn-trans');
+const textTrans = document.getElementById('translated-text');
 let paper_order = 0;
 let result;
 let file_name_path;
@@ -82,12 +84,12 @@ function getCookie(name) {
     return cookieValue;
     }
 
-const btnTrans = document.getElementById('btn-trans');
-const textTrans = document.getElementById('translated-text');
 
 btnTrans.addEventListener('click', async () => {
     
+    console.log("들어오나요?")
     let data = {'file_name' : file_name};
+    console.log(data);
 
     const response = await fetch('', {
         method: 'PUT',
@@ -101,9 +103,13 @@ btnTrans.addEventListener('click', async () => {
 
     if (result.success){        
         // $(".modal-body").html("업로드 완료되었습니다!");  
-        textTrans.innerText = result.result_text[0];
-        $('#myModal').modal('hide');
-        $('#translation-modal').modal();
+        // textTrans.innerText = result.result_text[0];
+        console.log(result.result_text);
+        trans = document.getElementById('trans-area');
+        trans.innerHTML = `<p>${result.result_text}</p>`;
+
+        // $('#myModal').modal('hide');
+        // $('#translation-modal').modal();
     }
     else {
         alert(result.message);
