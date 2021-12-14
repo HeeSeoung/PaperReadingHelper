@@ -1,7 +1,7 @@
 let wordcloud_data = new Array();
-console.log(wordcloud_text[0]);
+// console.log(wordcloud_text[0]);
 for (var text in wordcloud_text) {    
-    console.log(text);
+    // console.log(text);
     let wordcloud_item = new Object();
     wordcloud_item.x = wordcloud_text[text][0];
     wordcloud_item.value = wordcloud_text[text][1];

@@ -11,7 +11,7 @@ let result;
 let file_name_path;
 let file_name;
 btnUpload.addEventListener('click', async() => {
-    console.log("hello");
+    // console.log("hello");
     const formData = new FormData();
     formData.append('customFile', document.getElementById('customFile').files[0]);
 
@@ -24,10 +24,10 @@ btnUpload.addEventListener('click', async() => {
         alert(error);
     })
     result = await response.json()
-    console.log(result.file_text);
+    // console.log(result.file_text);
     file_name = result.file_name;
     file_name_path = result.file_name.slice(0, -4);    
-    console.log(result.paper_text);
+    // console.log(result.paper_text);
     if (result.success){        
         // $(".modal-body").html("업로드 완료되었습니다!");        
         paper_img.style.height = '500px';
@@ -52,8 +52,8 @@ btnVisual.addEventListener('click', () => {
 })
 const btnNext = document.getElementById('btn-next');
 btnNext.addEventListener('click', () => {
-    console.log(result.paper_text.length);
-    console.log(paper_order);
+    // console.log(result.paper_text.length);
+    // console.log(paper_order);
     if (paper_order < result.paper_text.length - 1){            
         paper_order ++;
         paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
@@ -88,9 +88,9 @@ function getCookie(name) {
 
 btnTrans.addEventListener('click', async () => {
     
-    console.log("들어오나요?")
+    // console.log("들어오나요?")
     let data = {'file_name' : file_name};
-    console.log(data);
+    // console.log(data);
 
     const response = await fetch('', {
         method: 'PUT',
@@ -105,7 +105,7 @@ btnTrans.addEventListener('click', async () => {
     if (result.success){        
         // $(".modal-body").html("업로드 완료되었습니다!");  
         // textTrans.innerText = result.result_text[0];
-        console.log(result.result_text);
+        // console.log(result.result_text);
         trans.innerHTML = `<p>${result.result_text}</p>`;
 
         // $('#myModal').modal('hide');

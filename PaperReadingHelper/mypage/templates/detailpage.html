@@ -142,8 +142,8 @@
         const paper_text = document.getElementById('paper-text');
         // const text =  document.getElementById('paper-text').value;
         const text = {{ paper_text|safe }}
-        console.log("dfdfdfdf");
-        console.log(text);
+        // console.log("dfdfdfdf");
+        // console.log(text);
         const btnVisual = document.getElementById('btn-visual');
         let paper_order = 0;
         let result;
@@ -151,8 +151,8 @@
 
         file_name_path = '{{ file_name }}';
         file_name_path = file_name_path.slice(0, -4);
-        console.log("here");
-        console.log(file_name_path);
+        // console.log("here");
+        // console.log(file_name_path);
         paper_img.style.height = '500px';        
         let d = "../../media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
         paper_img.setAttribute('src', d);        
@@ -161,7 +161,7 @@
                 
         const btnNext = document.getElementById('btn-next');
         btnNext.addEventListener('click', () => {            
-            console.log(paper_order);
+            // console.log(paper_order);
             if (paper_order < text.length - 1){            
                 paper_order ++;
                 paper_img.src = "../../media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";

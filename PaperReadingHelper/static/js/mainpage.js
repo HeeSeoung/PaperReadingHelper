@@ -4,7 +4,7 @@ const urlParams = url.searchParams;
 try{
   let paper_order_reload = 0;
   let file_name_reload = urlParams.get('file_name');
-  console.log(file_name_reload);
+  // console.log(file_name_reload);
   if (file_name_reload != '') {    
     let file_name_path = file_name_reload.slice(0, -4);
     paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order_reload)+".png";    
@@ -16,7 +16,7 @@ try{
   }
 }
 catch {
-  console.log("파일 이름 없음");
+  // console.log("파일 이름 없음");
 }
 
 // function readURL(input) {

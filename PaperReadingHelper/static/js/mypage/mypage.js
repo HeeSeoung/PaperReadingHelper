@@ -8,5 +8,5 @@ $('.btn-primary').on('click', (e)=>{
         file_name: e.target.value
     }      
     window.location.href = 'http://127.0.0.1:8000/' +'?' + $.param(obj);
-    console.log(e.target.value);
+    // console.log(e.target.value);
 })
