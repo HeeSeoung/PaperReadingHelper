@@ -87,15 +87,12 @@ const textTrans = document.getElementById('translated-text');
 
 btnTrans.addEventListener('click', async () => {
     
-    console.log("dfdfdfdfdfdfdffffffffffffffffffff");
-    console.log(file_name);
-    const formData = new FormData();
-    formData.append('file_name', file_name);
+    let data = {'file_name' : file_name};
 
     const response = await fetch('', {
         method: 'PUT',
         headers: {'X-CSRFToken': getCookie('csrftoken')},
-        body: formData,
+        body: JSON.stringify(data),
     })
     .catch((error) => {
         alert(error);
