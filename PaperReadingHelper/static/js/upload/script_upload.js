@@ -103,7 +103,7 @@ btnTrans.addEventListener('click', async () => {
         // $(".modal-body").html("업로드 완료되었습니다!");  
         textTrans.innerText = result.result_text[0];
         $('#myModal').modal('hide');
-        $('#translation-modal').modal('show');
+        $('#translation-modal').modal();
     }
     else {
         alert(result.message);

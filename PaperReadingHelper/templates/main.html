@@ -93,6 +93,37 @@
                 </div> -->
               </div>
             </div>
+          </div>   
+          <div class="modal fade" id="myModal-trans" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <!-- <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> -->
+                <div class="modal-body">
+                  <div class="container">                    
+                    <div class="row">
+                      <div class="col">
+                        <div class="loadingio-spinner-ellipsis-rbw7d6zpjdh">
+                          <div class="ldio-rqkh75aee3j">
+                          <div></div><div></div><div></div><div></div><div></div>
+                          </div></div>                        
+                      </div>
+                    </div>
+                    <div class="row text-center">
+                      <div class="col">
+                        번역이 진행 중 입니다
+                      </div>                      
+                      <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                  </div>
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">Understood</button>
+                </div> -->
+              </div>
+            </div>
           </div>              
           <div class="row">
             <div class="col-xl-2 col-lg-2"></div>
@@ -105,7 +136,7 @@
                 <div class="card-body">
                   <p id="paper-text" class="mb-0" style='height: 500px; overflow:auto;'></p>
                   <div id="text_area" align="center">              
-                    <button class="btn btn-primary d-done" type="button" id="btn-trans">
+                    <button class="btn btn-primary d-done" type="button" id="btn-trans" data-toggle="modal" data-target="#myModal-trans">
                       변역하기
                     </button>
                     <a href='#' class="btn btn-primary d-done" type="button" id="btn-visual">
