@@ -19,7 +19,7 @@ class HomeView(LoginRequiredMixin, View):
         context = {}
 
         context['user_id'] = request.user.id
-        context['user_name'] = User.objects.filter(id=request.user.id).values_list('username', flat=True).order_by('-upload_date')[0]
+        context['user_name'] = User.objects.filter(id=request.user.id).values_list('username', flat=True)[0]
 
         return render(request, 'main.html', context)
 
@@ -85,7 +85,7 @@ class HomeView(LoginRequiredMixin, View):
                     page_number = idx
                 )
 
-            filetext = list(Paper.objects.filter(file_name=filename).values_list('file_text', flat=True))
+            filetext = list(Paper.objects.filter(file_name=filename).values_list('file_text', flat=True).order_by('-upload_date'))
             filename = Paper.objects.filter(file_name=filename).values_list('file_name', flat=True)[0]
 
             context['paper_text'] = filetext
