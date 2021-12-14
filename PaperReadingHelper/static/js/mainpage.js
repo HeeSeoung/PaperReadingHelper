@@ -1,48 +1,23 @@
 const url = new URL(location.href);
 const urlParams = url.searchParams;
 
-
-let paper_order_reload = 0;
-let file_name_reload = urlParams.get('file_name');
-console.log(file_name_reload);
-if (file_name_reload != '') {    
-  let file_name_path = file_name_reload.slice(0, -4);
-  paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order_reload)+".png";    
-  // btnVisual.classList.remove('d-none');
-  // document.getElementById('btn-trans').classList.remove('d-none');
-  // document.getElementById('btn-next').classList.remove('d-none');
-  // document.getElementById('btn-prev').classList.remove('d-none');
-  // paper_text.innerText = result.paper_text[0];
+try{
+  let paper_order_reload = 0;
+  let file_name_reload = urlParams.get('file_name');
+  console.log(file_name_reload);
+  if (file_name_reload != '') {    
+    let file_name_path = file_name_reload.slice(0, -4);
+    paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order_reload)+".png";    
+    // btnVisual.classList.remove('d-none');
+    // document.getElementById('btn-trans').classList.remove('d-none');
+    // document.getElementById('btn-next').classList.remove('d-none');
+    // document.getElementById('btn-prev').classList.remove('d-none');
+    // paper_text.innerText = result.paper_text[0];
+  }
 }
-
-
-btnTrans.addEventListener('click', async () => {
-    
-    console.log("dfdfdfdfdfdfdffffffffffffffffffff");
-    console.log("file_name_reload");
-    const formData = new FormData();
-    formData.append('file_name', file_name_reload);
-
-    const response = await fetch('', {
-        method: 'PUT',
-        headers: {'X-CSRFToken': getCookie('csrftoken')},
-        body: formData,
-    })
-    .catch((error) => {
-        alert(error);
-    })
-    result = await response.json();
-
-    if (result.success){        
-        // $(".modal-body").html("업로드 완료되었습니다!");  
-        textTrans.innerText = result.result_text[0];
-        $('#myModal').modal('hide');
-        $('#translation-modal').modal('show');
-    }
-    else {
-        alert(result.message);
-    }
-})
+catch {
+  console.log("파일 이름 없음");
+}
 
 // function readURL(input) {
 //     if (input.files && input.files[0]) {
