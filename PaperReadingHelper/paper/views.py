@@ -114,7 +114,7 @@ class HomeView(LoginRequiredMixin, View):
                 #         page_number = idx
                 #     )
 
-            filetext = list(Paper.objects.filter(file_name=filename).values_list('file_text', flat=True).order_by('-upload_date'))
+            filetext = list(Paper.objects.filter(file_name=filename).values_list('file_text', flat=True).order_by('upload_date'))
             filename = Paper.objects.filter(file_name=filename).values_list('file_name', flat=True)[0]
 
             context['paper_text'] = filetext
@@ -146,7 +146,7 @@ class HomeView(LoginRequiredMixin, View):
             i = 0
             for text in data:
                 data_revised = Paper.objects.get(file_name=file_name, page_number=i)
-                data_revised.text_tans = text
+                data_revised.content = text
                 data_revised.save()
                 result.extend(transModel(text, src="en", tgt="ko"))
 
