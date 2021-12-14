@@ -129,8 +129,9 @@
     <script>
         const btnUpload = document.getElementById('btn-upload');
         const paper_img = document.getElementById('paper-img');
-        const paper_text = document.getElementById('paper-text').value;
-        console.log(paper_text);
+        const paper_text = document.getElementById('paper-text');
+        const text =  document.getElementById('paper-text').value;
+        console.log(text);
         const btnVisual = document.getElementById('btn-visual');
         let paper_order = 0;
         let result;
@@ -138,20 +139,20 @@
 
         file_name_path = document.getElementById('image-area').value;
         console.log(file_name_path);
-        paper_text = document.getElementById('text-area').value;
         paper_img.style.height = '500px';
         paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
+        console.log(paper_img.src);
         document.getElementById('btn-visual').setAttribute('href', `/visual?filename={{file_name}}`)     
-        paper_text.innerText = paper_text[0];
+        paper_text.innerText = text[0];
                 
         const btnNext = document.getElementById('btn-next');
         btnNext.addEventListener('click', () => {
             console.log(result.paper_text.length);
             console.log(paper_order);
-            if (paper_order < result.paper_text.length - 1){            
+            if (paper_order < text.length - 1){            
                 paper_order ++;
                 paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
-                paper_text.innerText = result.paper_text[paper_order];
+                paper_text.innerText = text[paper_order];
             }
         })
         const btnPrev = document.getElementById('btn-prev');
@@ -159,7 +160,7 @@
             if (paper_order > 0){            
                 paper_order --;
                 paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
-                paper_text.innerText = result.paper_text[paper_order];
+                paper_text.innerText = text[paper_order];
             }
         })
 
