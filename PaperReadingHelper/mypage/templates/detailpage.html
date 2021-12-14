@@ -47,11 +47,11 @@
             <div class="col-xl-4 col-lg-4">
               <div class="card shadow mb-4 text-center">
                 <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 font-weight-bolder">
+                <div class="card-header py-3 font-weight-bolder" id = "text-area" value="{{ paper_text }}">
                   OCR 텍스트
                 </div>                
                 <div class="card-body">
-                  <p id="paper-text" class="mb-0" style='height: 500px;'></p>
+                  <p id="paper-text" class="mb-0" style='height: 500px;' value="{{ paper_text }}"></p>
                   <div id="text_area" align="center">              
                     <button class="btn btn-primary d-done" type="button" id="btn-trans">
                       변역하기
@@ -66,7 +66,7 @@
             <div class="col-xl-4 col-lg-4">
               <div class="card shadow mb-4 text-center">
                 <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 font-weight-bolder">
+                <div class="card-header py-3 font-weight-bolder" id="image-area" value="{{ file_name }}">
                   업로드 한 이미지
                 </div>                
                 <div class="card-body">                  
@@ -129,17 +129,20 @@
     <script>
         const btnUpload = document.getElementById('btn-upload');
         const paper_img = document.getElementById('paper-img');
-        const paper_text = document.getElementById('paper-text');
+        const paper_text = document.getElementById('paper-text').value;
+        console.log(paper_text);
         const btnVisual = document.getElementById('btn-visual');
         let paper_order = 0;
         let result;
         let file_name_path;
 
-        file_name_path = '{{ file_name }}'.slice(0, -4);    
+        file_name_path = document.getElementById('image-area').value;
+        console.log(file_name_path);
+        paper_text = document.getElementById('text-area').value;
         paper_img.style.height = '500px';
         paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
         document.getElementById('btn-visual').setAttribute('href', `/visual?filename={{file_name}}`)     
-        paper_text.innerText = '{{ paper_text }}'[0];
+        paper_text.innerText = paper_text[0];
                 
         const btnNext = document.getElementById('btn-next');
         btnNext.addEventListener('click', () => {
