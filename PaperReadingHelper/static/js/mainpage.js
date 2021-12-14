@@ -1,31 +1,26 @@
 const url = new URL(location.href);
 const urlParams = url.searchParams;
-const btnTrans = document.getElementById('btn-trans');
-const textTrans = document.getElementById('translated-text');
 
-try{
-  let paper_order_reload = 0;
-  let file_name_reload = urlParams.get('file_name');
-  console.log(file_name_reload);
-  if (file_name_reload != '') {    
-    let file_name_path = file_name_reload.slice(0, -4);
-    paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order_reload)+".png";    
-    // btnVisual.classList.remove('d-none');
-    // document.getElementById('btn-trans').classList.remove('d-none');
-    // document.getElementById('btn-next').classList.remove('d-none');
-    // document.getElementById('btn-prev').classList.remove('d-none');
-    // paper_text.innerText = result.paper_text[0];
-  }
+
+let paper_order_reload = 0;
+let file_name_reload = urlParams.get('file_name');
+console.log(file_name_reload);
+if (file_name_reload != '') {    
+  let file_name_path = file_name_reload.slice(0, -4);
+  paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order_reload)+".png";    
+  // btnVisual.classList.remove('d-none');
+  // document.getElementById('btn-trans').classList.remove('d-none');
+  // document.getElementById('btn-next').classList.remove('d-none');
+  // document.getElementById('btn-prev').classList.remove('d-none');
+  // paper_text.innerText = result.paper_text[0];
 }
-catch {
-  console.log("파일 이름 없음");
-}
+
 
 btnTrans.addEventListener('click', async () => {
     
     console.log("dfdfdfdfdfdfdffffffffffffffffffff");
     const formData = new FormData();
-    formData.append('file_name', file_name);
+    formData.append('file_name', file_name_reload);
 
     const response = await fetch('', {
         method: 'PUT',
