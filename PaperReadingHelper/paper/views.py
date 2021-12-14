@@ -84,7 +84,7 @@ class HomeView(LoginRequiredMixin, View):
                     page_number = idx
                 )
 
-            filetext = list(Paper.objects.filter(file_name=filename).values_list('file_text', flat=True).order_by('upload_date'))
+            filetext = list(Paper.objects.filter(file_name=filename).values_list('file_text', flat=True).order_by('-upload_date'))
             filename = Paper.objects.filter(file_name=filename).values_list('file_name', flat=True)[0]
 
             context['paper_text'] = filetext
@@ -109,9 +109,15 @@ class HomeView(LoginRequiredMixin, View):
             
             file_name = request.PUT['file_name']
             data = list(Paper.objects.filter(file_name=file_name).values_list('file_text', flat=True).order_by('upload_date'))
+            data_revised = Paper.get(file_name=file_name)
+
             transModel = Pororo(task="translation", lang="multi")
             result = []
+            i = 0
             for text in data:
+                data_revised = Paper.get(file_name=file_name, page_number=i)
+                data_revised.text_tans = text
+                data_revised.save()
                 result.extend(transModel(text, src="en", tgt="ko"))
 
             context['success'] = True
