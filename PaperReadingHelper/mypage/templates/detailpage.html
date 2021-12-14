@@ -126,23 +126,35 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}" defer="defer"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}" defer="defer"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}" defer="defer"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/sb-admin-2.min.js' %}" defer="defer"></script>
+    <script src="{% static 'js/mypage/script_detail.js' %}" defer="defer"></script>
+    <script src="{% static 'js/mainpage.js' %}" defer="defer"></script>
     <script>
         const btnUpload = document.getElementById('btn-upload');
         const paper_img = document.getElementById('paper-img');
         const paper_text = document.getElementById('paper-text');
         const text =  document.getElementById('paper-text').value;
+        console.log("dfdfdfdf");
         console.log(text);
         const btnVisual = document.getElementById('btn-visual');
         let paper_order = 0;
         let result;
         let file_name_path;
 
-        file_name_path = file_name_reload;
+        file_name_path = document.getElementById('image-area').value;
+        console.log("here");
         console.log(file_name_path);
         paper_img.style.height = '500px';
         paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
         console.log(paper_img.src);
-        document.getElementById('btn-visual').setAttribute('href', `/visual?filename={{file_name}}`)     
+        document.getElementById('btn-visual').setAttribute('href', `/visual?filename={{file_name}}`)
         paper_text.innerText = text[0];
                 
         const btnNext = document.getElementById('btn-next');
@@ -180,17 +192,7 @@
             return cookieValue;
             }
     </script>
+</body>
 
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}" defer="defer"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}" defer="defer"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}" defer="defer"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{% static 'js/sb-admin-2.min.js' %}" defer="defer"></script>
-    <script src="{% static 'js/mypage/script_detail.js' %}" defer="defer"></script>
-    <script src="{% static 'js/mainpage.js' %}" defer="defer"></script>
-  </body>
 
 </html>
