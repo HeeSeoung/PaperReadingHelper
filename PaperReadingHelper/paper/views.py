@@ -52,11 +52,7 @@ class HomeView(LoginRequiredMixin, View):
 
             for i, page in enumerate(images):
                 page.save(path+file_str_name + sep + file_str_name+str(i)+".png", "PNG")
-                image_path = path + file_str_name
-
-            for idx, i in enumerate(os.listdir(image_path)):
-
-                path = image_path + sep + i
+                path = path+file_str_name + sep + file_str_name+str(i)+".png"
 
                 files = {
                     'image_file': (f'{path}', open(f'{path}', 'rb')),
@@ -81,8 +77,42 @@ class HomeView(LoginRequiredMixin, View):
                     file_name=filename,
                     file_path=path,
                     file_text=text,
-                    page_number = idx
+                    page_number = i
                 )
+
+                # for i, page in enumerate(images):
+                #     page.save(path+file_str_name + sep + file_str_name+str(i)+".png", "PNG")
+                #     image_path = path + file_str_name
+
+                # for idx, i in enumerate(os.listdir(image_path)):
+
+                #     path = image_path + sep + i
+
+                #     files = {
+                #         'image_file': (f'{path}', open(f'{path}', 'rb')),
+                #     }
+
+                #     response = requests.post('http://127.0.0.1:43051/predict', files=files)
+                #     # response = requests.post('http://127.0.0.1:62662/predict', files=files)
+                #     text = response.json()
+                #     text = ' '.join(text)
+
+                #     # t = response.text.encode('utf-8')
+                #     # t = t.decode('utf-8')                
+                #     # t = literal_eval(t)['text']
+                #     # text = response.json()
+                #     # print("===============================")
+                #     # print(text['text'])
+                #     # print("===============================")
+                #     # text = ' '.join(str(_) for _ in t)
+
+                #     data_created = Paper.objects.create(
+                #         user=request.user.id,
+                #         file_name=filename,
+                #         file_path=path,
+                #         file_text=text,
+                #         page_number = idx
+                #     )
 
             filetext = list(Paper.objects.filter(file_name=filename).values_list('file_text', flat=True).order_by('-upload_date'))
             filename = Paper.objects.filter(file_name=filename).values_list('file_name', flat=True)[0]
@@ -115,7 +145,7 @@ class HomeView(LoginRequiredMixin, View):
             result = []
             i = 0
             for text in data:
-                data_revised = Paper.get(file_name=file_name, page_number=i)
+                data_revised = Paper.objects.get(file_name=file_name, page_number=i)
                 data_revised.text_tans = text
                 data_revised.save()
                 result.extend(transModel(text, src="en", tgt="ko"))
