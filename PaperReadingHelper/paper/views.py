@@ -112,7 +112,7 @@ class HomeView(LoginRequiredMixin, View):
             transModel = Pororo(task="translation", lang="multi")
             result = []
             for text in data:
-                result.append(transModel(text, src="en", tgt="ko"))
+                result.extend(transModel(text, src="en", tgt="ko"))
 
             context['success'] = True
             context['message'] = "번역이 완료되었습니다."
