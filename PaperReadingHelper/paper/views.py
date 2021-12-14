@@ -142,7 +142,6 @@ class HomeView(LoginRequiredMixin, View):
             
             file_name = request.PUT['file_name']
             data = list(Paper.objects.filter(file_name=file_name).values_list('file_text', flat=True).order_by('upload_date'))
-            data_revised = Paper.get(file_name=file_name)
 
             transModel = Pororo(task="translation", lang="multi")
             result = []
