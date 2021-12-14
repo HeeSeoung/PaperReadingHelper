@@ -30,7 +30,10 @@ class UserDetailView(LoginRequiredMixin, View):
 
         file_name = request.GET.get('file_name')                
         filetext = list(model.Paper.objects.filter(file_name=file_name).values_list('file_text', flat=True).order_by('upload_date'))
+        transtext = list(model.Paper.objects.filter(file_name=file_name).values_list('text_trans', flat=True).order_by('upload_date'))
+
         
+        context['result_trans'] = transtext
         context['paper_text'] = filetext
         context['file_name'] = file_name
         context['user_id'] = request.user.id

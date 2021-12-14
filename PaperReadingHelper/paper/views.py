@@ -108,7 +108,7 @@ class HomeView(LoginRequiredMixin, View):
             request.PUT = json.loads(request.body)
             
             file_name = request.PUT['file_name']
-            data = list(Paper.objects.filter(file_name=file_name).values_list('file_text', flat=True))
+            data = list(Paper.objects.filter(file_name=file_name).values_list('file_text', flat=True).order_by('upload_date'))
             transModel = Pororo(task="translation", lang="multi")
             result = []
             for text in data:
