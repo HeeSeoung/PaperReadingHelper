@@ -144,14 +144,10 @@ class HomeView(LoginRequiredMixin, View):
             data = list(Paper.objects.filter(file_name=file_name).values_list('file_text', flat=True).order_by('upload_date'))
 
             transModel = Pororo(task="translation", lang="multi")
-            result = ''
+            result = []
             i = 0
             for text in data:
-                data_revised = Paper.objects.get(file_name=file_name, page_number=i)
-                trans = transModel(text, src="en", tgt="ko")
-                result += trans
-                data_revised.content = trans
-                data_revised.save()
+                result.extend(transModel(text, src="en", tgt="ko"))
 
             context['success'] = True
             context['message'] = "번역이 완료되었습니다."
