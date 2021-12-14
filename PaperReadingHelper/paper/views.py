@@ -19,7 +19,7 @@ class HomeView(LoginRequiredMixin, View):
         context = {}
 
         context['user_id'] = request.user.id
-        context['user_name'] = User.objects.filter(id=request.user.id).values_list('username', flat=True)[0]
+        context['user_name'] = User.objects.filter(id=request.user.id).values_list('username', flat=True).order_by('-upload_date')[0]
 
         return render(request, 'main.html', context)
 
