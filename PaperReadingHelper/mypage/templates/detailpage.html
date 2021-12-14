@@ -141,7 +141,7 @@
         const paper_img = document.getElementById('paper-img');
         const paper_text = document.getElementById('paper-text');
         // const text =  document.getElementById('paper-text').value;
-        const text = {{ paper_text }}
+        const text = {{ paper_text|safe }}
         console.log("dfdfdfdf");
         console.log(text);
         const btnVisual = document.getElementById('btn-visual');
