@@ -49,12 +49,13 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid mt-5">
+                <div class="container-fluid mt-5 ml-2">
                     <script>                        
                         const wordcloud_text = {{ wordcloud|safe }};                        
                     </script>
                     <!-- Page Heading -->
-                    <div class="card mb-3">
+                    <h1 class="h3 mb-4 text-gray-800">텍스트 데이터 시각화</h1>
+                    <!-- <div class="card mb-3">
                         <div class="card-header">
                           <div class="row flex-between-center">
                             <div class="col-4 col-sm-auto d-flex align-items-center pe-0">
@@ -62,12 +63,12 @@
                             </div>
                           </div>
                         </div>
-                    </div>
+                    </div> -->
                     
 
                     <div class="row g-0">
                         <div class="col-lg-6 pe-lg-2 mb-3">
-                            <div class="card h-lg-100 overflow-hidden">
+                            <div class="card h-lg-100 overflow-hidden" style="height: 100%;">
                                 <div class="card-header">
                                     <div class="row flex-between-end">
                                         <div class="col-auto flex-lg-grow-1 flex-lg-basis-0 align-self-center">
@@ -75,14 +76,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body bg-light">
+                                <div class="card-body">
                                     <div class="tab-content">
-                                        <div class="chart-area"  style="height: 400px;">
-                                            <div id="wordcloud" style='height: 400px;'></div>
+                                        <div class="chart-area">
+                                            <div id="wordcloud" style="height: 800px"></div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                            
                         </div>
                         <div class="col-lg-6 pe-lg-2 mb-3">
                             <div class="card h-lg-100 overflow-hidden">
@@ -93,7 +94,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body bg-light">
+                                <div class="card-body">
                                     <div class="tab-content">
                                         <div class="chart-area"  style="height: 400px;">
                                             <div id="piechart" style='height: 400px;'></div>
@@ -101,30 +102,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="row g-0">
-                        <div class="col-lg-6 pe-lg-2 mb-3">
-                            <div class="card h-lg-100 overflow-hidden">
-                                <div class="card-header">
-                                    <div class="row flex-between-end">
-                                        <div class="col-auto flex-lg-grow-1 flex-lg-basis-0 align-self-center">
-                                            <h5 class="mb-0" data-anchor="data-anchor">Embeding Projection</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body bg-light">
-                                    <div class="tab-content">
-                                        <div class="chart-area"  style="height: 400px;">
-                                            <div id="wordcloud" style='height: 400px;'></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 pe-lg-2 mb-3">
-                            <div class="card h-lg-100 overflow-hidden">
+                            <div class="card h-lg-100 overflow-hidden mt-2">
                                 <div class="card-header">
                                     <div class="row flex-between-end">
                                         <div class="col-auto flex-lg-grow-1 flex-lg-basis-0 align-self-center">
@@ -132,7 +110,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body bg-light">
+                                <div class="card-body">
                                     <div class="tab-content">
                                         <div class="chart-area"  style="height: 400px;">
                                             <div id="barchart" style='height: 400px;'></div>

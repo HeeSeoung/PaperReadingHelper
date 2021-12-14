@@ -22,6 +22,7 @@ btnUpload.addEventListener('click', async() => {
     result = await response.json()
     console.log(result.file_text);
     file_name_path = result.file_name.slice(0, -4);    
+    console.log(result.paper_text);
     if (result.success){        
         // $(".modal-body").html("업로드 완료되었습니다!");        
         paper_img.style.height = '500px';
