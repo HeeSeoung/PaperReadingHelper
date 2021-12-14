@@ -135,7 +135,7 @@
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/sb-admin-2.min.js' %}" defer="defer"></script>
     <script src="{% static 'js/mypage/script_detail.js' %}" defer="defer"></script>
-    <script src="{% static 'js/mainpage.js' %}" defer="defer"></script>
+    <!-- <script src="{% static 'js/mainpage.js' %}" defer="defer"></script> -->
     <script>
         const btnUpload = document.getElementById('btn-upload');
         const paper_img = document.getElementById('paper-img');
@@ -150,21 +150,21 @@
         let file_name_path;
 
         file_name_path = '{{ file_name }}';
+        file_name_path = file_name_path.slice(0, -4);
         console.log("here");
         console.log(file_name_path);
-        paper_img.style.height = '500px';
-        paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
-        console.log(paper_img.src);
+        paper_img.style.height = '500px';        
+        let d = "../../media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
+        paper_img.setAttribute('src', d);        
         document.getElementById('btn-visual').setAttribute('href', `/visual?filename={{file_name}}`)
         paper_text.innerText = text[0];
                 
         const btnNext = document.getElementById('btn-next');
-        btnNext.addEventListener('click', () => {
-            console.log(result.paper_text.length);
+        btnNext.addEventListener('click', () => {            
             console.log(paper_order);
             if (paper_order < text.length - 1){            
                 paper_order ++;
-                paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
+                paper_img.src = "../../media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
                 paper_text.innerText = text[paper_order];
             }
         })
@@ -172,7 +172,7 @@
         btnPrev.addEventListener('click', () => {
             if (paper_order > 0){            
                 paper_order --;
-                paper_img.src = "media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
+                paper_img.src = "../../media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
                 paper_text.innerText = text[paper_order];
             }
         })
