@@ -53,7 +53,7 @@
                 <div class="card-body">
                   <p id="paper-text" class="mb-0" style='height: 500px; overflow:auto;' value="{{ paper_text }}"></p>
                   <div id="text_area" align="center">              
-                    <button class="btn btn-primary d-done" type="button" id="btn-trans">
+                    <button class="btn btn-primary d-done" type="button" id="btn-trans" data-toggle="modal" data-target="#myModal-trans">
                       변역하기
                     </button>
                     <a href='#' class="btn btn-primary d-done" type="button" id="btn-visual">
@@ -86,7 +86,37 @@
             </div>
             <div class="col-xl-2 col-lg-2"></div>
           </div>
-
+          <div class="modal fade" id="myModal-trans" data-keyboard="false" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">번역</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container" id='trans-area'>                    
+                    <div class="row">
+                      <div class="col">
+                        <div class="loadingio-spinner-ellipsis-rbw7d6zpjdh">
+                          <div class="ldio-rqkh75aee3j">
+                          <div></div><div></div><div></div><div></div><div></div>
+                          </div></div>                        
+                      </div>
+                    </div>
+                    <div class="row text-center">
+                      <div class="col">
+                        번역이 진행 중 입니다
+                      </div>                      
+                      <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">Understood</button>
+                </div> -->
+              </div>
+            </div>
+          </div>
 
         </div>
         <!-- End of Main Content -->
@@ -149,8 +179,8 @@
         let result;
         let file_name_path;
 
-        file_name_path = '{{ file_name }}';
-        file_name_path = file_name_path.slice(0, -4);
+        file_name = '{{ file_name }}';
+        file_name_path = file_name.slice(0, -4);
         // console.log("here");
         // console.log(file_name_path);
         paper_img.style.height = '500px';        
@@ -191,7 +221,36 @@
                     }
                 }
             return cookieValue;
-            }
+          }
+
+        btnTrans.addEventListener('click', async () => {
+          let result_trans = {{ result_trans|safe }}
+          trans.innerHTML = `<p>${result_trans}</p>`;
+          // console.log("들어오나요?")          
+          // let data = {'file_name' : file_name};
+          // console.log(data);
+
+          // const response = await fetch('', {
+          //     method: 'PUT',
+          //     headers: {'X-CSRFToken': getCookie('csrftoken')},
+          //     body: JSON.stringify(data),
+          // })
+          // .catch((error) => {
+          //     alert(error);
+          // })
+          // result = await response.json();    
+          // if (result.success){        
+          //     // $(".modal-body").html("업로드 완료되었습니다!");  
+          //     // textTrans.innerText = result.result_text[0];
+          //     // console.log(result.result_text);
+
+          //     // $('#myModal').modal('hide');
+          //     // $('#translation-modal').modal();
+          // }
+          // else {
+          //     alert(result.message);
+          // }
+        })
     </script>
 </body>
 
