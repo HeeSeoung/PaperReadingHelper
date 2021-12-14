@@ -1,5 +1,8 @@
 const url = new URL(location.href);
 const urlParams = url.searchParams;
+const btnTrans = document.getElementById('btn-trans')
+const textTrans = document.getElementById('translated-text')
+
 try{
   let paper_order_reload = 0;
   let file_name_reload = urlParams.get('file_name');
@@ -17,6 +20,32 @@ try{
 catch {
   console.log("파일 이름 없음");
 }
+
+btnTrans.addEventListener('clcik', async () => {
+    
+    const formData = new FormData();
+    formData.append('file_name', file_name);
+
+    const response = await fetch('', {
+        method: 'PUT',
+        headers: {'X-CSRFToken': getCookie('csrftoken')},
+        body: formData,
+    })
+    .catch((error) => {
+        alert(error);
+    })
+    result = await response.json()
+
+    if (result.success){        
+        // $(".modal-body").html("업로드 완료되었습니다!");  
+        textTrans.innerText = result.result_text[0];
+        $('#myModal').modal('hide');
+        $('#translation-modal').modal('show');
+    }
+    else {
+        alert(result.message);
+    }
+})
 
 // function readURL(input) {
 //     if (input.files && input.files[0]) {

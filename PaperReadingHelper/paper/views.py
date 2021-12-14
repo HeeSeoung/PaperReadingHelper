@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 import os
 import re
-import requests
+import requests, json
 from datetime import datetime
 from pdf2image import convert_from_path, convert_from_bytes
 from ast import literal_eval
@@ -100,3 +100,30 @@ class HomeView(LoginRequiredMixin, View):
             context['message'] = e
 
             return JsonResponse(context, content_type='application/json')
+
+    def put(self, request: HttpRequest):
+        from pororo import Pororo
+
+        try:
+            context = {}
+            request.PUT = json.loads(request.body)
+            
+            file_name = request.PUT['file_name']
+            data = list(Paper.objects.filter(file_name=file_name).values_list('file_text', flat=True))
+            transModel = Pororo(task="translation", lang="multi")
+            result = []
+            for text in data:
+                result.append(transModel(text, src="en", tgt="ko"))
+
+            context['success'] = True
+            context['message'] = "번역이 완료되었습니다."
+            context['result_text'] = result
+            
+            return JsonResponse(context, content_type='application/json')
+
+        except Exception as e:
+            context['success'] = False
+            context['message'] = e
+
+            return JsonResponse(context, content_type='application/json')
+
