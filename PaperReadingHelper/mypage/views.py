@@ -28,7 +28,7 @@ class UserDetailView(LoginRequiredMixin, View):
     def get(self, request: HttpRequest, id):
         context = {}
 
-        file_name = request.GET.get('filename')                
+        file_name = request.GET.get('file_name')                
         filetext = list(model.Paper.objects.filter(file_name=file_name).values_list('file_text', flat=True).order_by('upload_date'))
         print(filetext)
         
