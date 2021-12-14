@@ -46,7 +46,7 @@ class HomeView(LoginRequiredMixin, View):
 
             print(path + filename)
             # images = convert_from_path(path + filename)
-            images = convert_from_path(path + filename)
+            images = convert_from_path(path + filename, poppler_path='D:\\devfile\\poppler-21.11.0\\Library\\bin')
             
             file_str_name = filename[:-4]
             os.mkdir(path + sep + file_str_name)
@@ -64,7 +64,7 @@ class HomeView(LoginRequiredMixin, View):
                     'image_file': (f'{path}', open(f'{path}', 'rb')),
                 }
 
-                response = requests.post('http://127.0.0.1:53075/predict', files=files)
+                response = requests.post('http://127.0.0.1:62662/predict', files=files)
                 text = response.json()
                 text = ' '.join(text)
 
@@ -85,7 +85,7 @@ class HomeView(LoginRequiredMixin, View):
                     page_number = idx
                 )
 
-            filetext = list(Paper.objects.filter(file_name=filename).values_list('file_text', flat=True).order_by('-upload_date'))
+            filetext = list(Paper.objects.filter(file_name=filename).values_list('file_text', flat=True).order_by('upload_date'))
             filename = Paper.objects.filter(file_name=filename).values_list('file_name', flat=True)[0]
 
             context['paper_text'] = filetext
