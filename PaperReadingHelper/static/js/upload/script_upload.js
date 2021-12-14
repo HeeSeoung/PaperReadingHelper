@@ -44,6 +44,7 @@ btnUpload.addEventListener('click', async() => {
         alert(result.message);
     }
 })
+
 btnVisual.addEventListener('click', () => {
     let obj={
         file_name: result.file_name

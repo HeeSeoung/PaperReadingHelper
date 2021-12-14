@@ -18,7 +18,8 @@ class VisualView(LoginRequiredMixin, View):
 
         file = request.GET.get('filename')                
         data = list(model.Paper.objects.filter(file_name=file).values_list('file_text', flat=True))
-
+        context['user_name'] = User.objects.filter(id=request.user.id).values_list('username', flat=True)[0]
+        context['user_id'] = request.user.id
 
 
         all_text = ' '.join(data)
