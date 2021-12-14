@@ -5,6 +5,7 @@ const paper_text = document.getElementById('paper-text');
 const btnVisual = document.getElementById('btn-visual');
 const btnTrans = document.getElementById('btn-trans');
 const textTrans = document.getElementById('translated-text');
+const trans = document.getElementById('trans-area');
 let paper_order = 0;
 let result;
 let file_name_path;
@@ -105,7 +106,6 @@ btnTrans.addEventListener('click', async () => {
         // $(".modal-body").html("업로드 완료되었습니다!");  
         // textTrans.innerText = result.result_text[0];
         console.log(result.result_text);
-        trans = document.getElementById('trans-area');
         trans.innerHTML = `<p>${result.result_text}</p>`;
 
         // $('#myModal').modal('hide');
