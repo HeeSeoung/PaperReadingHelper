@@ -85,7 +85,8 @@ class HomeView(LoginRequiredMixin, View):
                     page_number = idx
                 )
 
-            filetext = list(Paper.objects.filter(file_name=filename).values_list('file_text', flat=True).order_by('-upload_date'))
+            filetext = list(Paper.objects.filter(file_name=filename).values_list('file_text', flat=True))
+            filetext = filetext.reverse()
             filename = Paper.objects.filter(file_name=filename).values_list('file_name', flat=True)[0]
 
             context['paper_text'] = filetext
