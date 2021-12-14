@@ -44,7 +44,6 @@ class HomeView(LoginRequiredMixin, View):
             # data = Paper.objects.filter(file_name=filename).values_list('file_name')[0]            
             # context['file_name'] = data
 
-            print(path + filename)
             images = convert_from_path(path + filename)
             # images = convert_from_path(path + filename, poppler_path='D:\\devfile\\poppler-21.11.0\\Library\\bin')
             
@@ -58,7 +57,6 @@ class HomeView(LoginRequiredMixin, View):
             for idx, i in enumerate(os.listdir(image_path)):
 
                 path = image_path + sep + i
-                print(image_path + sep + i)
 
                 files = {
                     'image_file': (f'{path}', open(f'{path}', 'rb')),

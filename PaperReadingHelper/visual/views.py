@@ -14,13 +14,12 @@ from gensim.models import Word2Vec
 class VisualView(LoginRequiredMixin, View):
     def get(self, request: HttpRequest):
         context = {}
-        try:
 
-            file = request.GET.get('filename')                
-            data = list(model.Paper.objects.filter(file_name=file).values_list('file_text', flat=True))
 
-        except:
-            print('안됨')
+        file = request.GET.get('filename')                
+        data = list(model.Paper.objects.filter(file_name=file).values_list('file_text', flat=True))
+
+
 
         all_text = ' '.join(data)
         stop_words = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're",
@@ -53,8 +52,7 @@ class VisualView(LoginRequiredMixin, View):
         for sentense in normalized_text:                 
             sentense_tok = word_tokenize(sentense)
             for tok in sentense_tok:
-                if tok not in stop_words:
-                    print(tok)           
+                if tok not in stop_words:        
                     w2v_text.append(tok)
                     wordcolud_text.append(tok)        
         # text = [word_tokenize(sentence) for sentence in normalized_text]
@@ -63,11 +61,11 @@ class VisualView(LoginRequiredMixin, View):
         context['wordcloud'] = wordcolud_text
         # print(wordcolud_text)            
 
-        def word2vecmodel(text):      
-            model = Word2Vec(sentences=text, vector_size=100, window=5, min_count=1, workers=4)            
-            # model_result = model.wv.most_similar("and")
-            print(model.wv.vectors_for_all)            
-        word2vecmodel(w2v_text)
+        # def word2vecmodel(text):      
+        #     model = Word2Vec(sentences=text, vector_size=100, window=5, min_count=1, workers=4)            
+        #     # model_result = model.wv.most_similar("and")
+        #     print(model.wv.vectors_for_all)            
+        # word2vecmodel(w2v_text)
         # print(text)
         # context['text_freq'] = data
 

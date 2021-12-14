@@ -46,7 +46,6 @@ class RegisterView(View):
 
     def post(self, request: HttpRequest):
         context = {}
-        print(request.POST)
         id = request.POST['login-id']
         password = request.POST['login-password']
         email = request.POST['login-email']
