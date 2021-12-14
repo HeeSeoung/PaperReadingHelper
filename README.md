@@ -1,6 +1,5 @@
 # PaperReadingHelper
  *Django & BentoML*
- [![PyPI Status](https://badge.fury.io/py/easyocr.svg)](https://badge.fury.io/py/easyocr)
  [![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]()
  
  ***
