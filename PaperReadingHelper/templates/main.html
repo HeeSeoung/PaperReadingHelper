@@ -210,37 +210,6 @@
     <script src="{% static 'js/sb-admin-2.min.js' %}" defer="defer"></script>
     <script src="{% static 'js/upload/script_upload.js' %}" defer="defer"></script>
     <script src="{% static 'js/mainpage.js' %}" defer="defer"></script>
-    <script>
-      const btnTrans = document.getElementById('btn-trans');
-      const textTrans = document.getElementById('translated-text');
-
-      btnTrans.addEventListener('click', async () => {
-          
-          console.log("dfdfdfdfdfdfdffffffffffffffffffff");
-          const formData = new FormData();
-          formData.append('file_name', file_name);
-
-          const response = await fetch('', {
-              method: 'PUT',
-              headers: {'X-CSRFToken': getCookie('csrftoken')},
-              body: formData,
-          })
-          .catch((error) => {
-              alert(error);
-          })
-          result = await response.json();
-
-          if (result.success){        
-              // $(".modal-body").html("업로드 완료되었습니다!");  
-              textTrans.innerText = result.result_text[0];
-              $('#myModal').modal('hide');
-              $('#translation-modal').modal('show');
-          }
-          else {
-              alert(result.message);
-          }
-      })  
-    </script>
   </body>
 
 </html>
