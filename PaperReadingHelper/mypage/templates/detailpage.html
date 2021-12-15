@@ -185,7 +185,7 @@
         file_name_path = file_name.slice(0, -4);
         // console.log("here");
         // console.log(file_name_path);
-        paper_img.style.height = '500px';        
+        // paper_img.style.height = '500px';        
         let d = "../../media/"+file_name_path+"/"+file_name_path+String(paper_order)+".png";
         paper_img.setAttribute('src', d);        
         document.getElementById('btn-visual').setAttribute('href', `/visual?filename={{file_name}}`)
