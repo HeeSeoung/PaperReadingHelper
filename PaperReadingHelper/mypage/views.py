@@ -11,7 +11,7 @@ class UserView(LoginRequiredMixin, View):
     def get(self, request: HttpRequest, id):
         context = {}
 
-        data = model.Paper.objects.filter(user=id).order_by('-upload_date')
+        data = model.Paper.objects.filter(user=id, page_number=0).order_by('-upload_date')
         j = 1
         for i in data:
             i.index = j
